@@ -51,7 +51,7 @@ declare global {
    * The from method returns the substring of the string starting at position position
    * @param position
    */
-    from(position: number): string
+    from(position: number): string | undefined
     /**
    * The to method returns the substring of the string up to position position
    * @param position
@@ -62,6 +62,11 @@ declare global {
    * @param position
    */
     first(limit?: number): string
+    /**
+   * The last method returns a substring containing the last limit characters of the string.
+   * @param position
+   */
+    last(limit?: number): string
   }
 }
 
@@ -119,5 +124,11 @@ String.prototype.at = function (position: number) {
   }
   return this[position]
 }
-String.prototype.from = function (position: number) { return this[position] }
-String.prototype.to = function (position: number) { return this[position] }
+String.prototype.to = function (position: number) { return this.slice(0, position + 1) }
+String.prototype.from = function (position: number) {
+  const result = this.slice(position, this.length)
+  if (result === '') {
+    return undefined
+  }
+  return result
+}

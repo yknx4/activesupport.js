@@ -39,4 +39,22 @@ describe('String Helpers', () => {
     expectFrom('hello', -1, 'o')
     expectFrom('hello', 10, undefined)
   })
+
+  describe('from', () => {
+    const expectFrom = (input: string, position: number, expectation: string | undefined): void => it(`Should get ${expectation ?? '<undefined>'} from position ${position} from <${input}>`, () => expect(input.from(position)).toEqual(expectation))
+
+    expectFrom('hello', 0, 'hello')
+    expectFrom('hello', 2, 'llo')
+    expectFrom('hello', -2, 'lo')
+    expectFrom('hello', 10, undefined)
+  })
+
+  describe('to', () => {
+    const expectFrom = (input: string, position: number, expectation: string | undefined): void => it(`Should get ${expectation ?? '<undefined>'} from position ${position} from <${input}>`, () => expect(input.to(position)).toEqual(expectation))
+
+    expectFrom('hello', 0, 'h')
+    expectFrom('hello', 2, 'hel')
+    expectFrom('hello', -2, 'hell')
+    expectFrom('hello', 10, 'hello')
+  })
 })
