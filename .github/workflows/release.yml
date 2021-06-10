@@ -15,6 +15,7 @@ jobs:
         with:
           node-version: '14.x'
           registry-url: 'https://registry.npmjs.org'
+          scope: '@activesupport.js'
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn cache dir)"
@@ -36,6 +37,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - uses: actions/setup-node@v2
         with:
+          node-version: '14.x'
           registry-url: 'https://npm.pkg.github.com'
           scope: '@activesupport.js'
       - run: npm publish
