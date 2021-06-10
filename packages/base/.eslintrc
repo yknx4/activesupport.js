@@ -5,6 +5,7 @@
   },
   "rules": {
     "@typescript-eslint/no-unused-vars": "off",
-    "no-extend-native": "off"
+    "no-extend-native": "off",
+    "@typescript-eslint/method-signature-style": "off"
   }
 }
