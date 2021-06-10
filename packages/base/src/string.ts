@@ -67,7 +67,15 @@ declare global {
    * @param position
    */
     last(limit?: number): string
+    /**
+   * The reverse method reverses the string
+   */
+    reverse(): string
   }
+}
+
+String.prototype.reverse = function () {
+  return this.split('').reverse().join('')
 }
 
 String.prototype.remove = function (pattern: RegExp) {
@@ -131,4 +139,17 @@ String.prototype.from = function (position: number) {
     return undefined
   }
   return result
+}
+String.prototype.first = function (limit: number = 1) {
+  if (limit < 0) {
+    throw new Error('negative limit')
+  }
+  return this.slice(0, limit)
+}
+
+String.prototype.last = function (limit: number = 1) {
+  if (limit < 0) {
+    throw new Error('negative limit')
+  }
+  return this.reverse().first(limit).reverse()
 }

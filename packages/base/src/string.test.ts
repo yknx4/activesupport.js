@@ -57,4 +57,24 @@ describe('String Helpers', () => {
     expectFrom('hello', -2, 'hell')
     expectFrom('hello', 10, 'hello')
   })
+
+  describe('first', () => {
+    const expectFrom = (input: string, limit: number | undefined, expectation: string | undefined): void => it(`Should get ${expectation ?? '<undefined>'} from limit ${limit ?? 1} from <${input}>`, () => expect(input.first(limit)).toEqual(expectation))
+
+    expectFrom('hello', undefined, 'h')
+    expectFrom('hello', 1, 'h')
+    expectFrom('hello', 2, 'he')
+    expectFrom('hello', 0, '')
+    expectFrom('hello', 6, 'hello')
+  })
+
+  describe('last', () => {
+    const expectFrom = (input: string, limit: number | undefined, expectation: string | undefined): void => it(`Should get ${expectation ?? '<undefined>'} from limit ${limit ?? 1} from <${input}>`, () => expect(input.last(limit)).toEqual(expectation))
+
+    expectFrom('hello', undefined, 'o')
+    expectFrom('hello', 1, 'o')
+    expectFrom('hello', 2, 'lo')
+    expectFrom('hello', 0, '')
+    expectFrom('hello', 6, 'hello')
+  })
 })
