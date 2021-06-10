@@ -1,6 +1,6 @@
 {
   "name": "@activesupport.js/base",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "ActiveSupport Helpers for JS",
   "main": "dist/index.js",
   "repository": "https://github.com/yknx4/activesupport.js",
