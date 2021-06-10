@@ -3,7 +3,10 @@
   "version": "0.1.0",
   "description": "ActiveSupport Helpers for JS",
   "main": "index.js",
-  "repository": "https://github.com/yknx4/activesupport.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yknx4/activesupport.js.git"
+  },
   "author": "Ale Ornelas",
   "license": "MIT",
   "devDependencies": {
