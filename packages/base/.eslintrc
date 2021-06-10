@@ -1,0 +1,10 @@
+{
+  "extends": "standard-with-typescript",
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "rules": {
+    "@typescript-eslint/no-unused-vars": "off",
+    "no-extend-native": "off"
+  }
+}
