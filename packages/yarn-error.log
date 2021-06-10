@@ -1,0 +1,36 @@
+Arguments: 
+  /home/yknx4/.asdf/installs/nodejs/14.16.1/bin/node /home/yknx4/.asdf/installs/nodejs/14.16.1/.npm/bin/yarn init
+
+PATH: 
+  /home/yknx4/.asdf/installs/nodejs/14.16.1/.npm/bin:/home/yknx4/.asdf/installs/nodejs/14.16.1/bin:/home/yknx4/.krew/bin:/home/yknx4/.pip-apps/bin:/home/yknx4/.asdf/shims:/home/yknx4/.asdf/bin:/home/yknx4/.vscode-server/bin/054a9295330880ed74ceaedda236253b4f39a335/bin:/home/yknx4/.krew/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA NvDLISR:/mnt/c/Program Files/Docker/Docker/resources/bin:/mnt/c/ProgramData/DockerDesktop/version-bin:/mnt/c/Users/yknx4/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/yknx4/AppData/Local/Programs/Microsoft VS Code/bin:/home/yknx4/.zgenom/unixorn/jpb.zshplugin/___/bin:/home/yknx4/.zgenom/unixorn/warhol.plugin.zsh/___/bin:/home/yknx4/.zgenom/unixorn/git-extra-commands/___/bin:/home/yknx4/.fzf/bin:/home/yknx4/.zgenom/unixorn/bitbucket-git-helpers.plugin.zsh/___/bin:/home/yknx4/.zgenom/skx/sysadmin-util/___:/home/yknx4/.zgenom/StackExchange/blackbox/___/bin
+
+Yarn version: 
+  1.22.10
+
+Node version: 
+  14.16.1
+
+Platform: 
+  linux x64
+
+Trace: 
+  Error: canceled
+      at Interface.<anonymous> (/home/yknx4/.asdf/installs/nodejs/14.16.1/.npm/lib/node_modules/yarn/lib/cli.js:136216:13)
+      at Interface.emit (events.js:315:20)
+      at Interface._ttyWrite (readline.js:875:16)
+      at ReadStream.onkeypress (readline.js:213:10)
+      at ReadStream.emit (events.js:315:20)
+      at emitKeys (internal/readline/utils.js:345:14)
+      at emitKeys.next (<anonymous>)
+      at ReadStream.onData (readline.js:1144:36)
+      at ReadStream.emit (events.js:315:20)
+      at addChunk (internal/streams/readable.js:309:12)
+
+npm manifest: 
+  No manifest
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
