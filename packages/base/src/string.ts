@@ -46,7 +46,7 @@ declare global {
    * The at method returns the character of the string at position position
    * @param position
    */
-    at(position: number): string
+    at(position: number): string | undefined
     /**
    * The from method returns the substring of the string starting at position position
    * @param position
@@ -109,3 +109,15 @@ String.prototype.indent = function (length: number, indentString?: string, inden
   const lines = this.split('\n')
   return lines.map(l => l === '' && !indentEmptyLines ? '' : l.padStart(l.length + length, finalIndentString)).join('\n')
 }
+
+String.prototype.at = function (position: number) {
+  if (position > this.length) {
+    return undefined
+  }
+  if (position < 0) {
+    return this[this.length + position]
+  }
+  return this[position]
+}
+String.prototype.from = function (position: number) { return this[position] }
+String.prototype.to = function (position: number) { return this[position] }

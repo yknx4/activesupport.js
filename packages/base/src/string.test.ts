@@ -30,4 +30,13 @@ describe('String Helpers', () => {
     it('should not indent empty lines', () => expect('foo\n\nbar'.indent(2)).toEqual('  foo\n\n  bar'))
     it('should indent empty lines if specified', () => expect('foo\n\nbar'.indent(2, undefined, true)).toEqual('  foo\n  \n  bar'))
   })
+
+  describe('at', () => {
+    const expectFrom = (input: string, position: number, expectation: string | undefined): void => it(`Should get ${expectation ?? '<undefined>'} at position ${position} from <${input}>`, () => expect(input.at(position)).toEqual(expectation))
+
+    expectFrom('hello', 0, 'h')
+    expectFrom('hello', 4, 'o')
+    expectFrom('hello', -1, 'o')
+    expectFrom('hello', 10, undefined)
+  })
 })
