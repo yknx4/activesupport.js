@@ -25,9 +25,11 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
-      - run: yarn install
 
+      - run: yarn install
+        working-directory: packages/base
       - run: npm publish --access public
+        working-directory: packages/base
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - uses: actions/setup-node@v2
@@ -35,5 +37,6 @@ jobs:
           registry-url: 'https://npm.pkg.github.com'
           scope: '@activesupport.js'
       - run: npm publish
+        working-directory: packages/base
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
