@@ -22,4 +22,9 @@ describe('String Helpers', () => {
     it('underscore product', () => expect("Product".underscore()).toEqual("product"));
     it('underscore AdminUser', () => expect("AdminUser".underscore()).toEqual("admin_user"));
   })
+
+  describe('titleize ', () => {
+    it('titleize alice in wonderland', () => expect("alice in wonderland".titleize()).toEqual("Alice in Wonderland"));
+    it('titleize fermat\'s enigma', () => expect("fermat's enigma".titleize()).toEqual("Fermat's Enigma"));
+  })
 })
