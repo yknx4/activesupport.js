@@ -97,7 +97,7 @@ declare global {
      * @param integer
      * @param padstr
      */
-    ljust(integer: number, padstr: string): string
+    ljust(integer: number, padstr?: string): string
     /**
      * Treats leading characters of str as a string of octal digits (with an optional sign) and returns the corresponding number. Returns 0 if the conversion fails.
      */
@@ -107,7 +107,7 @@ declare global {
      * @param integer
      * @param padstr
      */
-    rjust(integer: number, padstr: string): string
+    rjust(integer: number, padstr?: string): string
   }
 }
 
@@ -204,5 +204,17 @@ String.prototype.hex = function () {
 }
 
 String.prototype.lines = function (separator?: string, chomp?: boolean) {
+  throw new Error('not implemented')
+}
+
+String.prototype.ljust = function (integer: number, padstr?: string) {
+  throw new Error('not implemented')
+}
+
+String.prototype.rjust = function (integer: number, padstr?: string) {
+  throw new Error('not implemented')
+}
+
+String.prototype.oct = function () {
   throw new Error('not implemented')
 }

@@ -110,4 +110,24 @@ describe('String Helpers', () => {
     it('gets lines with separator', () => expect('hello  world'.lines(' ')).toEqual(['hello ', ' ', 'world']))
     it('gets lines with chomp', () => expect('hello\nworld\n'.lines(undefined, true)).toEqual(['hello', 'world']))
   })
+
+  describe('ljust', () => {
+    it('does nothing when width is shorter than input', () => expect('hello'.ljust(4)).toEqual('hello'))
+    it('does justify to width to the left', () => expect('hello'.ljust(20)).toEqual('hello               '))
+    it('does justify to width to the left with padstr', () => expect('hello'.ljust(20, '1234')).toEqual('hello123412341234123'))
+  })
+
+  describe('rjust', () => {
+    it('does nothing when width is shorter than input', () => expect('hello'.rjust(4)).toEqual('hello'))
+    it('does justify to width to the left', () => expect('hello'.rjust(20)).toEqual('               hello'))
+    it('does justify to width to the left with padstr', () => expect('hello'.rjust(20, '1234')).toEqual('123412341234123hello'))
+  })
+
+  describe('oct', () => {
+    const testOct = (input: string, expectation: number): void => it(`gets oct from ${input} to ${expectation}`, () => expect(input.oct()).toEqual(expectation))
+    testOct('123', 83)
+    testOct('-377', -255)
+    testOct('bad', 0)
+    testOct('0377bad', 255)
+  })
 })
