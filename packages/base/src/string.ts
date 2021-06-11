@@ -192,7 +192,10 @@ String.prototype.last = function (limit: number = 1) {
 }
 
 String.prototype.chomp = function (separator?: string) {
-  throw new Error('not implemented')
+  if (separator === undefined) {
+    return this.replace(/(\n|\r\n)+$/, '')
+  }
+  return this.replace(new RegExp(`(${separator})+$`), '')
 }
 
 String.prototype.center = function (width: number, padstr?: string) {
