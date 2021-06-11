@@ -206,8 +206,8 @@ String.prototype.center = function (width: number, padstr?: string) {
     return this.toString()
   }
   const missingLenght = width - this.length
-  const half = width / 2
-  return this.padStart(half, padstr).padEnd(half, padstr)
+  const half = missingLenght / 2
+  return this.padStart(this.length + half, padstr).padEnd(width, padstr)
 }
 
 String.prototype.hex = function () {
