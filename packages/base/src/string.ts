@@ -91,7 +91,7 @@ declare global {
      * @param separator
      * @param chomp If chomp is true, separator will be removed from the end of each line.
      */
-    lines(separator: string, chomp?: boolean): string[]
+    lines(separator?: string, chomp?: boolean): string[]
     /**
      * If integer is greater than the length of str, returns a new String of length integer with str left justified and padded with padstr; otherwise, returns str.
      * @param integer
@@ -200,5 +200,9 @@ String.prototype.center = function (width: number, padstr?: string) {
 }
 
 String.prototype.hex = function () {
+  throw new Error('not implemented')
+}
+
+String.prototype.lines = function (separator?: string, chomp?: boolean) {
   throw new Error('not implemented')
 }

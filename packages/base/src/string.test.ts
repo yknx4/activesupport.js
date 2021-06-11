@@ -104,4 +104,10 @@ describe('String Helpers', () => {
     testHex('0', 0)
     testHex('wombat', 0)
   })
+
+  describe('lines', () => {
+    it('gets lines', () => expect('hello\nworld\n'.lines()).toEqual(['hello\n', 'world\n']))
+    it('gets lines with separator', () => expect('hello  world'.lines(' ')).toEqual(['hello ', ' ', 'world']))
+    it('gets lines with chomp', () => expect('hello\nworld\n'.lines(undefined, true)).toEqual(['hello', 'world']))
+  })
 })
