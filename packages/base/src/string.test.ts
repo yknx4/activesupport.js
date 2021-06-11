@@ -77,4 +77,17 @@ describe('String Helpers', () => {
     expectFrom('hello', 0, '')
     expectFrom('hello', 6, 'hello')
   })
+
+  describe('chomp', () => {
+    const testChomp = (input: string, expectation: string, separator?: string): void => it(`chomps ${input} to ${expectation}`, () => expect(input.chomp(separator)).toEqual(expectation))
+    testChomp('hello', 'hello')
+    testChomp('hello\n', 'hello')
+    testChomp('hello\r\n', 'hello')
+    testChomp('hello\n\r', 'hello\n')
+    testChomp('hello\r', 'hello')
+    testChomp('hello \n there', 'hello \n there')
+    testChomp('hello', 'he', 'llo')
+    testChomp('hello\r\n\r\n', 'hello', '')
+    testChomp('hello\r\n\r\r\n', 'hello\r\n\r', '')
+  })
 })
