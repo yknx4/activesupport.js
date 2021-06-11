@@ -17,4 +17,9 @@ describe('String Helpers', () => {
     testCamelize("admin_user", "AdminUser")
     testCamelize("visual_effect", "visualEffect", "lower")
   })
+
+  describe('underscore', () => {
+    it('underscore product', () => expect("Product".underscore()).toEqual("product"));
+    it('underscore AdminUser', () => expect("AdminUser".underscore()).toEqual("admin_user"));
+  })
 })
