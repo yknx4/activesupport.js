@@ -19,12 +19,12 @@ declare global {
      * The method camelize returns its receiver in camel case
      * @param type it can be :upper (default), or :lower. With the latter the first letter becomes lowercase
      */
-    camelize(type: "upper" | "lower"): string
+    camelize(type?: "upper" | "lower"): string
     /**
      * Alias of camelize
      * @param type 
      */
-    camelcase(type: "upper" | "lower"): string
+    camelcase(type?: "upper" | "lower"): string
     /**
      * The method underscore goes the other way around, from camel case to paths
      */
@@ -82,10 +82,10 @@ String.prototype.singularize = function() {
   return plural(this.toString(), 1)
 }
 
-String.prototype.camelize = function(type: "upper" | "lower") {
+String.prototype.camelize = function(type: "upper" | "lower" = 'upper') {
   return type === "upper" ? casejs.pascal(this.toString()) : casejs.camel(this.toString())
 }
-String.prototype.camelize = String.prototype.camelcase
+String.prototype.camelcase = String.prototype.camelize
 
 String.prototype.underscore = function() {
   return casejs.snake(this.toString())

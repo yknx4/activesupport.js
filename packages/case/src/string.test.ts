@@ -10,4 +10,11 @@ describe('String Helpers', () => {
   describe('singularize', () => {
     it('singularizes tables', () => expect("tables".singularize()).toEqual("table"));
   })
+
+  describe('camelize', () => {
+    const testCamelize = (input: string, expectation: string, type?: "upper" | "lower"): void => it(`camelizes ${input} to ${expectation}`, () => expect(input.camelize(type)).toEqual(expectation))
+    testCamelize("product", "Product")
+    testCamelize("admin_user", "AdminUser")
+    testCamelize("visual_effect", "visualEffect", "lower")
+  })
 })
