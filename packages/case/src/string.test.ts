@@ -27,4 +27,9 @@ describe('String Helpers', () => {
     it('titleize alice in wonderland', () => expect("alice in wonderland".titleize()).toEqual("Alice in Wonderland"));
     it('titleize fermat\'s enigma', () => expect("fermat's enigma".titleize()).toEqual("Fermat's Enigma"));
   })
+
+  describe('dasherize ', () => {
+    it('dasherize name', () => expect("name".dasherize()).toEqual("name"));
+    it('dasherize contact_data', () => expect("contact_data".dasherize()).toEqual("contact-data"));
+  })
 })
