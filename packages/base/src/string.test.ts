@@ -96,4 +96,12 @@ describe('String Helpers', () => {
     it('does center', () => expect('hello'.center(20)).toEqual('       hello        '))
     it('does center with padstr', () => expect('hello'.center(20, '123')).toEqual('1231231hello12312312'))
   })
+
+  describe('hex', () => {
+    const testHex = (input: string, expectation: number): void => it(`gets hext from ${input} to ${expectation}`, () => expect(input.hex()).toEqual(expectation))
+    testHex('0x0a', 10)
+    testHex('-1234', -4660)
+    testHex('0', 0)
+    testHex('wombat', 0)
+  })
 })

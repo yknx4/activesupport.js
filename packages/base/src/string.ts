@@ -198,3 +198,7 @@ String.prototype.chomp = function (separator?: string) {
 String.prototype.center = function (width: number, padstr?: string) {
   throw new Error('not implemented')
 }
+
+String.prototype.hex = function () {
+  throw new Error('not implemented')
+}
