@@ -199,7 +199,12 @@ String.prototype.chomp = function (separator?: string) {
 }
 
 String.prototype.center = function (width: number, padstr?: string) {
-  throw new Error('not implemented')
+  if (this.length > width) {
+    return this.toString()
+  }
+  const missingLenght = width - this.length
+  const half = width / 2
+  return this.padStart(half, padstr).padEnd(half, padstr)
 }
 
 String.prototype.hex = function () {
@@ -213,11 +218,11 @@ String.prototype.lines = function (separator: string = '\n', chomp: boolean = fa
 }
 
 String.prototype.ljust = function (integer: number, padstr?: string) {
-  throw new Error('not implemented')
+  return this.padEnd(integer, padstr)
 }
 
 String.prototype.rjust = function (integer: number, padstr?: string) {
-  throw new Error('not implemented')
+  return this.padStart(integer, padstr)
 }
 
 String.prototype.oct = function () {
