@@ -87,11 +87,10 @@ declare global {
      */
     hex(): number
     /**
-     * Returns an array of lines in str split using the supplied record separator ($/ by default).
+     * Returns an array of lines in str split using the supplied record separator (\n by default).
      * @param separator
-     * @param chomp If chomp is true, separator will be removed from the end of each line.
      */
-    lines(separator?: string, chomp?: boolean): string[]
+    lines(separator?: string): string[]
     /**
      * If integer is greater than the length of str, returns a new String of length integer with str left justified and padded with padstr; otherwise, returns str.
      * @param integer
@@ -215,9 +214,8 @@ String.prototype.hex = function () {
   return isNaN(result) ? 0 : result
 }
 
-String.prototype.lines = function (separator: string = '\n', chomp: boolean = false) {
-  const baseLines = this.split(separator)
-  return baseLines
+String.prototype.lines = function (separator: string = '\n') {
+  return this.split(separator)
 }
 
 String.prototype.ljust = function (integer: number, padstr?: string) {
