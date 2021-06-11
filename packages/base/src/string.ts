@@ -207,8 +207,9 @@ String.prototype.hex = function () {
   return isNaN(result) ? 0 : result
 }
 
-String.prototype.lines = function (separator?: string, chomp?: boolean) {
-  throw new Error('not implemented')
+String.prototype.lines = function (separator: string = '\n', chomp: boolean = false) {
+  const baseLines = this.split(separator)
+  return baseLines
 }
 
 String.prototype.ljust = function (integer: number, padstr?: string) {
