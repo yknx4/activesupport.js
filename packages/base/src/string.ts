@@ -193,7 +193,10 @@ String.prototype.last = function (limit: number = 1) {
 
 String.prototype.chomp = function (separator?: string) {
   if (separator === undefined) {
-    return this.replace(/(\n|\r\n)+$/, '')
+    return this.replace(/(\n+|(\r\n)+|\r+)$/, '')
+  }
+  if (separator === '') {
+    return this.replace(/(\r\n)+$/, '')
   }
   return this.replace(new RegExp(`(${separator})+$`), '')
 }

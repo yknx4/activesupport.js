@@ -79,7 +79,7 @@ describe('String Helpers', () => {
   })
 
   describe('chomp', () => {
-    const testChomp = (input: string, expectation: string, separator?: string): void => it(`chomps ${input} to ${expectation}`, () => expect(input.chomp(separator)).toEqual(expectation))
+    const testChomp = (input: string, expectation: string, separator?: string): void => it(`chomps <${escape(input)}> to <${escape(expectation)}>. separator: <${escape(separator ?? 'undefined')}>. result: <${escape(input.chomp(separator))}>`, () => expect(input.chomp(separator)).toEqual(expectation))
     testChomp('hello', 'hello')
     testChomp('hello\n', 'hello')
     testChomp('hello\r\n', 'hello')
