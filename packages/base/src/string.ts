@@ -81,7 +81,7 @@ declare global {
      * @param width
      * @param padstr
      */
-    center(width: number, padstr: string): string
+    center(width: number, padstr?: string): string
     /**
      * Treats leading characters from str as a string of hexadecimal digits (with an optional sign and an optional 0x) and returns the corresponding number. Zero is returned on error.
      */
@@ -192,5 +192,9 @@ String.prototype.last = function (limit: number = 1) {
 }
 
 String.prototype.chomp = function (separator?: string) {
+  throw new Error('not implemented')
+}
+
+String.prototype.center = function (width: number, padstr?: string) {
   throw new Error('not implemented')
 }

@@ -90,4 +90,10 @@ describe('String Helpers', () => {
     testChomp('hello\r\n\r\n', 'hello', '')
     testChomp('hello\r\n\r\r\n', 'hello\r\n\r', '')
   })
+
+  describe('center', () => {
+    it('does nothing when width is shorter than input', () => expect('hello'.center(4)).toEqual('hello'))
+    it('does center', () => expect('hello'.center(20)).toEqual('       hello        '))
+    it('does center with padstr', () => expect('hello'.center(20, '123')).toEqual('1231231hello12312312'))
+  })
 })
