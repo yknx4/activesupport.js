@@ -71,6 +71,42 @@ declare global {
    * The reverse method reverses the string
    */
     reverse(): string
+    /**
+     * Returns a new String with the given record separator removed from the end of str (if present). If $/ has not been changed from the default Ruby record separator, then chomp also removes carriage return characters (that is it will remove \n, \r, and \r\n). If $/ is an empty string, it will remove all trailing newlines from the string.
+     * @param separator
+     */
+    chomp(separator?: string): string
+    /**
+     * Centers str in width. If width is greater than the length of str, returns a new String of length width with str centered and padded with padstr; otherwise, returns str.
+     * @param width
+     * @param padstr
+     */
+    center(width: number, padstr?: string): string
+    /**
+     * Treats leading characters from str as a string of hexadecimal digits (with an optional sign and an optional 0x) and returns the corresponding number. Zero is returned on error.
+     */
+    hex(): number
+    /**
+     * Returns an array of lines in str split using the supplied record separator (\n by default).
+     * @param separator
+     */
+    lines(separator?: string): string[]
+    /**
+     * If integer is greater than the length of str, returns a new String of length integer with str left justified and padded with padstr; otherwise, returns str.
+     * @param integer
+     * @param padstr
+     */
+    ljust(integer: number, padstr?: string): string
+    /**
+     * Treats leading characters of str as a string of octal digits (with an optional sign) and returns the corresponding number. Returns 0 if the conversion fails.
+     */
+    oct(): number
+    /**
+     * If integer is greater than the length of str, returns a new String of length integer with str right justified and padded with padstr; otherwise, returns str.
+     * @param integer
+     * @param padstr
+     */
+    rjust(integer: number, padstr?: string): string
   }
 }
 
@@ -152,4 +188,45 @@ String.prototype.last = function (limit: number = 1) {
     throw new Error('negative limit')
   }
   return this.reverse().first(limit).reverse()
+}
+
+String.prototype.chomp = function (separator?: string) {
+  if (separator === undefined) {
+    return this.replace(/(\n+|(\r\n)+|\r+)$/, '')
+  }
+  if (separator === '') {
+    return this.replace(/(\r\n)+$/, '')
+  }
+  return this.replace(new RegExp(`(${separator})+$`), '')
+}
+
+String.prototype.center = function (width: number, padstr?: string) {
+  if (this.length > width) {
+    return this.toString()
+  }
+  const missingLenght = width - this.length
+  const half = missingLenght / 2
+  return this.padStart(this.length + half, padstr).padEnd(width, padstr)
+}
+
+String.prototype.hex = function () {
+  const result = parseInt(this.toString(), 16)
+  return isNaN(result) ? 0 : result
+}
+
+String.prototype.lines = function (separator: string = '\n') {
+  return this.split(separator)
+}
+
+String.prototype.ljust = function (integer: number, padstr?: string) {
+  return this.padEnd(integer, padstr)
+}
+
+String.prototype.rjust = function (integer: number, padstr?: string) {
+  return this.padStart(integer, padstr)
+}
+
+String.prototype.oct = function () {
+  const result = parseInt(this.toString(), 8)
+  return isNaN(result) ? 0 : result
 }

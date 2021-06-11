@@ -77,4 +77,55 @@ describe('String Helpers', () => {
     expectFrom('hello', 0, '')
     expectFrom('hello', 6, 'hello')
   })
+
+  describe('chomp', () => {
+    const testChomp = (input: string, expectation: string, separator?: string): void => it(`chomps <${escape(input)}> to <${escape(expectation)}>. separator: <${escape(separator ?? 'undefined')}>. result: <${escape(input.chomp(separator))}>`, () => expect(input.chomp(separator)).toEqual(expectation))
+    testChomp('hello', 'hello')
+    testChomp('hello\n', 'hello')
+    testChomp('hello\r\n', 'hello')
+    testChomp('hello\n\r', 'hello\n')
+    testChomp('hello\r', 'hello')
+    testChomp('hello \n there', 'hello \n there')
+    testChomp('hello', 'he', 'llo')
+    testChomp('hello\r\n\r\n', 'hello', '')
+    testChomp('hello\r\n\r\r\n', 'hello\r\n\r', '')
+  })
+
+  describe('center', () => {
+    it('does nothing when width is shorter than input', () => expect('hello'.center(4)).toEqual('hello'))
+    it('does center', () => expect('hello'.center(20)).toEqual('       hello        '))
+    it('does center with padstr', () => expect('hello'.center(20, '123')).toEqual('1231231hello12312312'))
+  })
+
+  describe('hex', () => {
+    const testHex = (input: string, expectation: number): void => it(`gets hext from ${input} to ${expectation}`, () => expect(input.hex()).toEqual(expectation))
+    testHex('0x0a', 10)
+    testHex('-1234', -4660)
+    testHex('0', 0)
+    testHex('wombat', 0)
+  })
+
+  describe('lines', () => {
+    it('gets lines', () => expect('hello\nworld\n'.lines()).toEqual(['hello', 'world', '']))
+  })
+
+  describe('ljust', () => {
+    it('does nothing when width is shorter than input', () => expect('hello'.ljust(4)).toEqual('hello'))
+    it('does justify to width to the left', () => expect('hello'.ljust(20)).toEqual('hello               '))
+    it('does justify to width to the left with padstr', () => expect('hello'.ljust(20, '1234')).toEqual('hello123412341234123'))
+  })
+
+  describe('rjust', () => {
+    it('does nothing when width is shorter than input', () => expect('hello'.rjust(4)).toEqual('hello'))
+    it('does justify to width to the left', () => expect('hello'.rjust(20)).toEqual('               hello'))
+    it('does justify to width to the left with padstr', () => expect('hello'.rjust(20, '1234')).toEqual('123412341234123hello'))
+  })
+
+  describe('oct', () => {
+    const testOct = (input: string, expectation: number): void => it(`gets oct from ${input} to ${expectation}`, () => expect(input.oct()).toEqual(expectation))
+    testOct('123', 83)
+    testOct('-377', -255)
+    testOct('bad', 0)
+    testOct('0377bad', 255)
+  })
 })
