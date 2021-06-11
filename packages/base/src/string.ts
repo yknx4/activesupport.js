@@ -200,7 +200,8 @@ String.prototype.center = function (width: number, padstr?: string) {
 }
 
 String.prototype.hex = function () {
-  throw new Error('not implemented')
+  const result = parseInt(this.toString(), 16)
+  return isNaN(result) ? 0 : result
 }
 
 String.prototype.lines = function (separator?: string, chomp?: boolean) {
@@ -216,5 +217,6 @@ String.prototype.rjust = function (integer: number, padstr?: string) {
 }
 
 String.prototype.oct = function () {
-  throw new Error('not implemented')
+  const result = parseInt(this.toString(), 8)
+  return isNaN(result) ? 0 : result
 }
