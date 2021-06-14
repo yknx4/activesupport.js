@@ -104,8 +104,14 @@ String.prototype.parameterize = function(options: ParameterizeOptions) {
   throw new Error('not implemented')
 }
 
-String.prototype.humanize = function(capitalize: boolean) {
-  throw new Error('not implemented')
+String.prototype.humanize = function(capitalize: boolean = true) {
+  let builtString = this.toString().replace(/^_+/, '').replace("_id", "").replace(/_+/g, ' ')
+  if(capitalize) {
+    const [firstWord, ...words] = builtString.split(' ')
+    builtString = [firstWord.capitalize(), ...words].join(' ')
+  }
+  
+  return builtString
 }
 
 String.prototype.tableize = function() {
