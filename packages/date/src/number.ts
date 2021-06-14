@@ -12,30 +12,30 @@ declare global {
 }
 
 Number.prototype.seconds = function() {
-  throw new Error('Not Implemented')
+  return Duration.fromObject({seconds: this.valueOf()})
 }
 
 
 Number.prototype.minutes = function() {
-  throw new Error('Not Implemented')
+  return Duration.fromObject({minutes: this.valueOf()})
 }
 
 
 Number.prototype.hours = function() {
-  throw new Error('Not Implemented')
+  return Duration.fromObject({hours: this.valueOf()})
 }
 
 
 Number.prototype.days = function() {
-  throw new Error('Not Implemented')
+  return Duration.fromObject({days: this.valueOf()})
 }
 
 
 Number.prototype.weeks = function() {
-  throw new Error('Not Implemented')
+  return Duration.fromObject({weeks: this.valueOf()})
 }
 
 
 Number.prototype.fortnights = function() {
-  throw new Error('Not Implemented')
+  return Duration.fromObject({weeks: this.valueOf() * 2})
 }
