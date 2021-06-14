@@ -1,6 +1,6 @@
 import casejs from 'case'
 import plural from 'pluralize'
-import { transliterate } from 'transliteration'
+import { transliterate, slugify } from 'transliteration'
 
 declare global {
   interface ParameterizeOptions {
@@ -73,6 +73,8 @@ declare global {
     foreignKey(underscore?: boolean): string
     capitalize(): string
     headerize(): string
+    transliterate(): string
+    slugify(): string
   }
 }
 
@@ -139,4 +141,12 @@ String.prototype.capitalize = function() {
 
 String.prototype.headerize = function() {
   return casejs.header(this.toString())
+}
+
+String.prototype.transliterate = function() {
+  return transliterate(this.toString())
+}
+
+String.prototype.slugify = function() {
+  return slugify(this.toString())
 }

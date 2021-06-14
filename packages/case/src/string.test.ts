@@ -77,4 +77,12 @@ describe('String Helpers', () => {
     testHeaderize("ApiToken", "Api-Token")
     testHeaderize("UserAgent", "User-Agent")
   })
+
+  
+  describe('transliterates', () => {
+    it('transliterates 你好, world!', () => expect('你好, world!'.transliterate()).toEqual("Ni Hao, world!"));
+  })
+  describe('slugify', () => {
+    it('slugify 你好, world!', () => expect('你好, world!'.slugify()).toEqual("ni-hao-world"));
+  })
 })
