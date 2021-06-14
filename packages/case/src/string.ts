@@ -1,5 +1,7 @@
 import casejs from 'case'
 import plural from 'pluralize'
+import { transliterate } from 'transliteration'
+
 declare global {
   interface ParameterizeOptions {
     preserveCase?: boolean
@@ -100,8 +102,16 @@ String.prototype.dasherize = function() {
   return casejs.kebab(this.toString())
 }
 
-String.prototype.parameterize = function(options: ParameterizeOptions) {
-  throw new Error('not implemented')
+String.prototype.parameterize = function(options: ParameterizeOptions = {}) {
+  const {preserveCase = false} = options
+  let builtString = transliterate(this.toString()).headerize()
+  if(options.separator !== undefined) {
+    builtString = builtString.replace('-', options.separator)
+  }
+  if(preserveCase === false) {
+    builtString = builtString.toLocaleLowerCase('en-US')
+  }
+  return builtString
 }
 
 String.prototype.humanize = function(capitalize: boolean = true) {
