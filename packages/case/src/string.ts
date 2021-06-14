@@ -45,7 +45,7 @@ declare global {
      * The method parameterize normalizes its receiver in a way that can be used in pretty URLs
      * @param options To preserve the case of the string, set the preserve_case argument to true. By default, preserve_case is set to false. To use a custom separator, override the separator argument.
      */
-    parameterize(options: ParameterizeOptions): string
+    parameterize(options?: ParameterizeOptions): string
     /**
      * The method humanize tweaks an attribute name for display to end users.
      * 
@@ -59,7 +59,7 @@ declare global {
      * Capitalizes the first word.
      * @param capitalize The capitalization of the first word can be turned off by setting the :capitalize option to false (default is true)
      */
-    humanize(capitalize: boolean): string
+    humanize(capitalize?: boolean): string
     /**
      * The method tableize is underscore followed by pluralize.
      */
