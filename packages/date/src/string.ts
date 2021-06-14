@@ -9,13 +9,13 @@ declare global {
 }
 
 String.prototype.toDate = function() {
-  throw new Error('Not Implemented')
+  return DateTime.fromISO(this.toString()).toJSDate()
 }
 
 String.prototype.toTime = function() {
-  throw new Error('Not Implemented')
+  return DateTime.fromISO(this.toString())
 }
 
 String.prototype.toDateTime = function() {
-  throw new Error('Not Implemented')
+  return DateTime.fromISO(this.toString())
 }
