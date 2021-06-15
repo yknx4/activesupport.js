@@ -1,0 +1,7 @@
+{
+  "entryPoints": ["src/string.ts"],
+  "out": "docs",
+  "plugin": "typedoc-plugin-markdown",
+  "includeVersion": true,
+  "emit": true
+}

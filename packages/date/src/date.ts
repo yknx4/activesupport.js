@@ -332,3 +332,5 @@ Date.prototype.isOnWeekday = function () {
 Date.prototype.isOnWeekend = function () {
   return !this.isOnWeekday()
 }
+
+export type DateHelpers = Date

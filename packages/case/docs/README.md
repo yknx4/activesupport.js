@@ -1,3 +1,5 @@
+@activesupport.js/case - v0.1.5 / [Exports](modules.md)
+
 # activesupport.js
 
 ActiveSupport Helpers for JS

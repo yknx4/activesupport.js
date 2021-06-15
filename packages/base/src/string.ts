@@ -230,3 +230,5 @@ String.prototype.oct = function () {
   const result = parseInt(this.toString(), 8)
   return isNaN(result) ? 0 : result
 }
+
+export type StringHelpers = String

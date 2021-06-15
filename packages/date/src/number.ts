@@ -34,3 +34,5 @@ Number.prototype.weeks = function () {
 Number.prototype.fortnights = function () {
   return Duration.fromObject({ weeks: this.valueOf() * 2 })
 }
+
+export type NumberHelpers = Number

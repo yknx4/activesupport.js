@@ -1,3 +1,5 @@
+@activesupport.js/base - v0.1.5 / [Modules](modules.md)
+
 # activesupport.js
 
 ActiveSupport Helpers for JS

@@ -17,3 +17,5 @@ String.prototype.toTime = function () {
 }
 
 String.prototype.toDateTime = String.prototype.toTime
+
+export type StringHelpers = String

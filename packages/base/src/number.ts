@@ -59,4 +59,4 @@ Number.prototype.exabytes = function () {
   return this.petabytes() * 1024
 }
 
-export { }
+export type NumberHelpers = Number
