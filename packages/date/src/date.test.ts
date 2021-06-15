@@ -24,13 +24,11 @@ describe('Date Helpers', () => {
 
   describe('midnight', () => {
     it('should get midnight', () =>  {
-      const tomorrow = DateTime.now().plus({day: 1})
       const date = new Date().midnight()
       expect(date.getSeconds()).toEqual(0)
       expect(date.getHours()).toEqual(0)
       expect(date.getMinutes()).toEqual(0)
       expect(date.getMilliseconds()).toEqual(0)
-      expect(date.getDate()).toEqual(tomorrow.day)
     });
   })
 
@@ -70,4 +68,11 @@ describe('Date Helpers', () => {
     });
   })
   
+  describe('since', () => {
+    it('should get 5 seconds since beginning of day', () =>  {
+      const date = new Date().beginningOfDay()
+      const newDate = date.fromNow(Duration.fromObject({hours: 5}))
+      expect(newDate.getHours()).toEqual(5)
+    });
+  })
 })

@@ -16,6 +16,4 @@ String.prototype.toTime = function() {
   return DateTime.fromISO(this.toString())
 }
 
-String.prototype.toDateTime = function() {
-  return DateTime.fromISO(this.toString())
-}
+String.prototype.toDateTime = String.prototype.toTime
