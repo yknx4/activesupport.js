@@ -13,10 +13,6 @@ If you are afraid of prototype augmentation, then leave and don't look back.
 
 This library will inject base JS prototypes with several helper methods, since most of the drawbacks of prototype pollution are addressed by Typescript and the ability to properly document this changes this should be harmless.
 
-## Documentation
-
-For more detailed documentation, the changelog, and TypeDoc documentation rendered with TypeDoc, see https://typedoc.org.
-
 ## Installation
 
 ```text
