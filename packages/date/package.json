@@ -1,6 +1,6 @@
 {
   "name": "@activesupport.js/date",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "ActiveSupport Helpers for JS",
   "main": "dist/index.js",
   "repository": {
@@ -33,7 +33,9 @@
     "lint-staged": "^11.0.0",
     "ts-jest": "^27.0.3",
     "typescript": "^4.3.2",
-    "luxon": ">= 1.27.0 < 2"
+    "luxon": ">= 1.27.0 < 2",
+    "typedoc": "^0.20.36",
+    "typedoc-plugin-markdown": "^3.9.0"
   },
   "peerDependencies": {
     "luxon": ">= 1.27.0 < 2"

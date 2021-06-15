@@ -150,3 +150,5 @@ String.prototype.transliterate = function () {
 String.prototype.slugify = function () {
   return slugify(this.toString())
 }
+
+export type StringHelpers = String
