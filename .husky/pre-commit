@@ -2,4 +2,4 @@
 . "$(dirname "$0")/_/husky.sh"
 
 cd packages
-cd base && yarn lint-staged
+cd base && yarn lint-staged && cd ../case && yarn lint-staged && cd ../date && yarn lint-staged
