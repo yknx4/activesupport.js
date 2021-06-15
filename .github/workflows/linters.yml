@@ -29,11 +29,33 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
-      - name: Install NPM Packages
+      - name: Install NPM Packages (Base)
         run: yarn install
-      - name: ESLint
+        working-directory: packages/base
+      - name: ESLint (Base)
         run: yarn eslint
+        working-directory: packages/base
       - uses: reviewdog/action-eslint@v1
         with:
           reporter: github-pr-review
           workdir: "packages/base"
+      - name: Install NPM Packages (Case)
+        run: yarn install
+        working-directory: packages/case
+      - name: ESLint (Case)
+        run: yarn eslint
+        working-directory: packages/case
+      - uses: reviewdog/action-eslint@v1
+        with:
+          reporter: github-pr-review
+          workdir: "packages/case"
+      - name: Install NPM Packages (Date)
+        run: yarn install
+        working-directory: packages/date
+      - name: ESLint (Date)
+        run: yarn eslint
+        working-directory: packages/date
+      - uses: reviewdog/action-eslint@v1
+        with:
+          reporter: github-pr-review
+          workdir: "packages/date"

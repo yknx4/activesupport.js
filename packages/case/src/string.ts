@@ -21,12 +21,12 @@ declare global {
      * The method camelize returns its receiver in camel case
      * @param type it can be :upper (default), or :lower. With the latter the first letter becomes lowercase
      */
-    camelize(type?: "upper" | "lower"): string
+    camelize(type?: 'upper' | 'lower'): string
     /**
      * Alias of camelize
-     * @param type 
+     * @param type
      */
-    camelcase(type?: "upper" | "lower"): string
+    camelcase(type?: 'upper' | 'lower'): string
     /**
      * The method underscore goes the other way around, from camel case to paths
      */
@@ -50,7 +50,7 @@ declare global {
     parameterize(options?: ParameterizeOptions): string
     /**
      * The method humanize tweaks an attribute name for display to end users.
-     * 
+     *
      * Specifically, it performs these transformations:
      *
      * Applies human inflection rules to the argument.
@@ -78,75 +78,75 @@ declare global {
   }
 }
 
-String.prototype.pluralize = function(count = 2) {
+String.prototype.pluralize = function (count = 2) {
   return plural(this.toString(), count)
 }
 
-String.prototype.singularize = function() {
+String.prototype.singularize = function () {
   return plural(this.toString(), 1)
 }
 
-String.prototype.camelize = function(type: "upper" | "lower" = 'upper') {
-  return type === "upper" ? casejs.pascal(this.toString()) : casejs.camel(this.toString())
+String.prototype.camelize = function (type: 'upper' | 'lower' = 'upper') {
+  return type === 'upper' ? casejs.pascal(this.toString()) : casejs.camel(this.toString())
 }
 String.prototype.camelcase = String.prototype.camelize
 
-String.prototype.underscore = function() {
+String.prototype.underscore = function () {
   return casejs.snake(this.toString())
 }
 
-String.prototype.titleize = function() {
+String.prototype.titleize = function () {
   return casejs.title(this.toString())
 }
 String.prototype.titlecase = String.prototype.titleize
 
-String.prototype.dasherize = function() {
+String.prototype.dasherize = function () {
   return casejs.kebab(this.toString())
 }
 
-String.prototype.parameterize = function(options: ParameterizeOptions = {}) {
-  const {preserveCase = false} = options
+String.prototype.parameterize = function (options: ParameterizeOptions = {}) {
+  const { preserveCase = false } = options
   let builtString = transliterate(this.toString()).headerize()
-  if(options.separator !== undefined) {
+  if (options.separator !== undefined) {
     builtString = builtString.replace('-', options.separator)
   }
-  if(preserveCase === false) {
+  if (!preserveCase) {
     builtString = builtString.toLocaleLowerCase('en-US')
   }
   return builtString
 }
 
-String.prototype.humanize = function(capitalize: boolean = true) {
-  let builtString = this.toString().replace(/^_+/, '').replace("_id", "").replace(/_+/g, ' ')
-  if(capitalize) {
+String.prototype.humanize = function (capitalize: boolean = true) {
+  let builtString = this.toString().replace(/^_+/, '').replace('_id', '').replace(/_+/g, ' ')
+  if (capitalize) {
     const [firstWord, ...words] = builtString.split(' ')
     builtString = [firstWord.capitalize(), ...words].join(' ')
   }
-  
+
   return builtString
 }
 
-String.prototype.tableize = function() {
+String.prototype.tableize = function () {
   return this.underscore().pluralize()
 }
 
-String.prototype.foreignKey = function(underscore = true) {
+String.prototype.foreignKey = function (underscore = true) {
   const toAppend = underscore ? '_id' : 'id'
   return `${this.underscore()}${toAppend}`
 }
 
-String.prototype.capitalize = function() {
+String.prototype.capitalize = function () {
   return casejs.capital(this.toString())
 }
 
-String.prototype.headerize = function() {
+String.prototype.headerize = function () {
   return casejs.header(this.toString())
 }
 
-String.prototype.transliterate = function() {
+String.prototype.transliterate = function () {
   return transliterate(this.toString())
 }
 
-String.prototype.slugify = function() {
+String.prototype.slugify = function () {
   return slugify(this.toString())
 }

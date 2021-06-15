@@ -13,9 +13,12 @@ jobs:
       CI: true
     strategy:
       matrix:
-        node: [ '14', '15', '16' ]
+        node: [ '12', '14', '16' ]
     name: Node ${{ matrix.node }} tests
     steps:
+      - uses: szenius/set-timezone@v1.0
+        with:
+          timezoneLinux: "America/Mexico_City"
       - uses: actions/checkout@v2
       - name: Setup node
         uses: actions/setup-node@v2
@@ -37,3 +40,15 @@ jobs:
       - name: Test (Base)
         run: yarn test --coverage
         working-directory: packages/base
+      - name: Install NPM Packages (Case)
+        run: yarn install
+        working-directory: packages/case
+      - name: Test (Case)
+        run: yarn test --coverage
+        working-directory: packages/case
+      - name: Install NPM Packages (Date)
+        run: yarn install
+        working-directory: packages/date
+      - name: Test (Date)
+        run: yarn test --coverage
+        working-directory: packages/date
