@@ -1,4 +1,4 @@
-import {DateTime} from 'luxon'
+import { DateTime } from 'luxon'
 
 declare global {
   interface String {
@@ -8,11 +8,11 @@ declare global {
   }
 }
 
-String.prototype.toDate = function() {
+String.prototype.toDate = function () {
   return DateTime.fromISO(this.toString()).toJSDate()
 }
 
-String.prototype.toTime = function() {
+String.prototype.toTime = function () {
   return DateTime.fromISO(this.toString())
 }
 

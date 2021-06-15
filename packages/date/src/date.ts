@@ -74,27 +74,27 @@ declare global {
     endOfYear(): Date
     /**
      * The method ago receives a number of seconds as argument and returns a timestamp those many seconds ago from midnight
-     * @param input 
+     * @param input
      */
     ago(input: Duration): Date
     /**
      * The method years_ago receives a number of years and returns the same date those many years ago
-     * @param years 
+     * @param years
      */
     yearsAgo(years: number): Date
     /**
      * The method monthsAgo receives a number of months and returns the same date those many months ago
-     * @param months 
+     * @param months
      */
     monthsAgo(months: number): Date
     /**
      * The method monthsSince receives a number of months and returns the same date those many months in the future
-     * @param months 
+     * @param months
      */
     monthsSince(months: number): Date
     /**
      * years_since moves forward in time
-     * @param years 
+     * @param years
      */
     yearsSince(years: number): Date
     /**
@@ -107,21 +107,17 @@ declare global {
     lastMonth(): Date
     /**
      * The method weeksAgo receives a number of weeks and returns the same date those many weeks ago
-     * @param weeks 
+     * @param weeks
      */
     weeksAgo(weeks: number): Date
     /**
      * The method weeksSince receives a number of weeks and returns the same date those many weeks in the future
-     * @param weeks 
+     * @param weeks
      */
     weeksSince(weeks: number): Date
     /**
-    * lastMonth is short-hand for #monthsAgo(1)
-    */
-    lastMonth(): Date
-    /**
      * since moves forward. see ago
-     * @param seconds 
+     * @param seconds
      */
     since(seconds: number): Date
     in(seconds: number): Date
@@ -136,12 +132,12 @@ declare global {
     secondsUntilEndOfDay(): number
     /**
      * The most generic way to jump to other days is advance.
-     * @param option 
+     * @param option
      */
     advance(option: DurationInput): Date
     /**
      * The method change allows you to get a new date which is the same as the receiver except for the given year, month, or day
-     * @param option 
+     * @param option
      */
     change(option: DateObjectUnits): Date
     /**
@@ -178,60 +174,59 @@ Date.prototype.toDateTime = function () {
 }
 
 Date.prototype.beginningOfDay = function () {
-  return this.toDateTime().startOf("day").toJSDate()
+  return this.toDateTime().startOf('day').toJSDate()
 }
 
 Date.prototype.beginningOfYear = function () {
-  return this.toDateTime().startOf("year").toJSDate()
+  return this.toDateTime().startOf('year').toJSDate()
 }
 
 Date.prototype.beginningOfMonth = function () {
-  return this.toDateTime().startOf("quarter").toJSDate()
+  return this.toDateTime().startOf('quarter').toJSDate()
 }
 
 Date.prototype.beginningOfMonth = function () {
-  return this.toDateTime().startOf("month").toJSDate()
+  return this.toDateTime().startOf('month').toJSDate()
 }
 
 Date.prototype.beginningOfWeek = function () {
-  return this.toDateTime().startOf("week").toJSDate()
+  return this.toDateTime().startOf('week').toJSDate()
 }
 
 Date.prototype.beginningOfDay = function () {
-  return this.toDateTime().startOf("day").toJSDate()
+  return this.toDateTime().startOf('day').toJSDate()
 }
 
-
 Date.prototype.beginningOfHour = function () {
-  return this.toDateTime().startOf("hour").toJSDate()
+  return this.toDateTime().startOf('hour').toJSDate()
 }
 
 Date.prototype.beginningOfMinute = function () {
-  return this.toDateTime().startOf("minute").toJSDate()
+  return this.toDateTime().startOf('minute').toJSDate()
 }
 
 Date.prototype.midnight = Date.prototype.beginningOfDay
 
 Date.prototype.endOfMinute = function () {
-  return this.toDateTime().endOf("minute").toJSDate()
+  return this.toDateTime().endOf('minute').toJSDate()
 }
 Date.prototype.endOfHour = function () {
-  return this.toDateTime().endOf("hour").toJSDate()
+  return this.toDateTime().endOf('hour').toJSDate()
 }
 Date.prototype.endOfDay = function () {
-  return this.toDateTime().endOf("day").toJSDate()
+  return this.toDateTime().endOf('day').toJSDate()
 }
 Date.prototype.endOfWeek = function () {
-  return this.toDateTime().endOf("week").toJSDate()
+  return this.toDateTime().endOf('week').toJSDate()
 }
 Date.prototype.endOfMonth = function () {
-  return this.toDateTime().endOf("month").toJSDate()
+  return this.toDateTime().endOf('month').toJSDate()
 }
 Date.prototype.endOfQuarter = function () {
-  return this.toDateTime().endOf("quarter").toJSDate()
+  return this.toDateTime().endOf('quarter').toJSDate()
 }
 Date.prototype.endOfYear = function () {
-  return this.toDateTime().endOf("year").toJSDate()
+  return this.toDateTime().endOf('year').toJSDate()
 }
 
 Date.prototype.advance = function (input) {
@@ -270,70 +265,70 @@ Date.prototype.weeksSince = function (weeks) {
   return this.ago(Duration.fromObject({ weeks }))
 }
 
-Date.prototype.lastYear = function() {
+Date.prototype.lastYear = function () {
   return this.yearsAgo(1)
 }
 
-Date.prototype.lastMonth = function() {
+Date.prototype.lastMonth = function () {
   return this.monthsAgo(1)
 }
 
 Date.prototype.in = Date.prototype.since
 
-Date.prototype.utc = function() {
+Date.prototype.utc = function () {
   return this.toDateTime().toUTC().toJSDate()
 }
 
-Date.prototype.secondsSinceMidnight = function() {
+Date.prototype.secondsSinceMidnight = function () {
   return this.toDateTime().diff(DateTime.fromJSDate(this.midnight()), 'seconds').seconds
 }
 
-Date.prototype.secondsUntilEndOfDay = function() {
+Date.prototype.secondsUntilEndOfDay = function () {
   return this.toDateTime().diff(DateTime.fromJSDate(this.endOfDay()), 'seconds').negate().seconds
 }
 
-Date.prototype.change = function(input) {
+Date.prototype.change = function (input) {
   return this.toDateTime().set(input).toJSDate()
 }
 
-Date.prototype.nextWeek = function() {
+Date.prototype.nextWeek = function () {
   return this.weeksSince(1)
 }
 
-Date.prototype.prevWeek = function() {
+Date.prototype.prevWeek = function () {
   return this.weeksAgo(1)
 }
 
 Date.prototype.lastWeek = Date.prototype.prevWeek
 
-Date.prototype.isPast = function() {
+Date.prototype.isPast = function () {
   return this.toDateTime() < DateTime.now()
 }
 
-Date.prototype.isToday = function() {
+Date.prototype.isToday = function () {
   return this.toDateTime().hasSame(DateTime.now(), 'day')
 }
 
-Date.prototype.isTomorrow = function() {
+Date.prototype.isTomorrow = function () {
   return this.toDateTime().hasSame(Date.tomorrow().toDateTime(), 'day')
 }
 
 Date.prototype.isNextDay = Date.prototype.isTomorrow
 
-Date.prototype.isYesterday = function() {
+Date.prototype.isYesterday = function () {
   return this.toDateTime().hasSame(Date.yesterday().toDateTime(), 'day')
 }
 
 Date.prototype.isPrevDay = Date.prototype.isYesterday
 
-Date.prototype.isFuture = function() {
+Date.prototype.isFuture = function () {
   return this.toDateTime() > DateTime.now()
 }
 
-Date.prototype.isOnWeekday = function() {
+Date.prototype.isOnWeekday = function () {
   return this.toDateTime().weekday < 6
 }
 
-Date.prototype.isOnWeekend = function() {
+Date.prototype.isOnWeekend = function () {
   return !this.isOnWeekday()
 }
