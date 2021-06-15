@@ -181,7 +181,7 @@ Date.prototype.beginningOfYear = function () {
   return this.toDateTime().startOf('year').toJSDate()
 }
 
-Date.prototype.beginningOfMonth = function () {
+Date.prototype.beginningOfQuarter = function () {
   return this.toDateTime().startOf('quarter').toJSDate()
 }
 
@@ -262,7 +262,7 @@ Date.prototype.weeksAgo = function (weeks) {
 }
 
 Date.prototype.weeksSince = function (weeks) {
-  return this.ago(Duration.fromObject({ weeks }))
+  return this.advance(Duration.fromObject({ weeks }))
 }
 
 Date.prototype.lastYear = function () {

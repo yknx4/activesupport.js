@@ -2,6 +2,54 @@ import { DateTime, Duration } from 'luxon'
 import './date'
 
 describe('Date Helpers', () => {
+  test('utc', () => expect(DateTime.fromObject({ year: new Date().getFullYear(), month: 8, day: 29, hour: 12, minute: 34, second: 56 }).toJSDate().utc().toISOString()).toEqual('2021-08-29T17:34:56.000Z'))
+  test('beginningOfYear', () => {
+    const date = new Date().beginningOfYear()
+    expect(date.getMonth()).toEqual(0)
+    expect(date.getDate()).toEqual(1)
+    expect(date.getSeconds()).toEqual(0)
+    expect(date.getHours()).toEqual(0)
+    expect(date.getMinutes()).toEqual(0)
+    expect(date.getMilliseconds()).toEqual(0)
+  })
+
+  test('endOfYear', () => {
+    const date = new Date().endOfYear()
+    expect(date.getMonth()).toEqual(11)
+    expect(date.getDate()).toEqual(31)
+    expect(date.getSeconds()).toEqual(59)
+    expect(date.getHours()).toEqual(23)
+    expect(date.getMinutes()).toEqual(59)
+    expect(date.getMilliseconds()).toEqual(999)
+  })
+
+  test('endOfMonth', () => {
+    const date = new Date().endOfMonth()
+    expect(date.getDate()).toEqual(30)
+    expect(date.getSeconds()).toEqual(59)
+    expect(date.getHours()).toEqual(23)
+    expect(date.getMinutes()).toEqual(59)
+    expect(date.getMilliseconds()).toEqual(999)
+  })
+
+  test('endOfQuarter', () => {
+    const date = DateTime.fromObject({ month: 8, day: 29, hour: 12, minute: 34, second: 56 }).toJSDate().endOfQuarter()
+    expect(date.getMonth()).toEqual(8)
+    expect(date.getDate()).toEqual(30)
+    expect(date.getSeconds()).toEqual(59)
+    expect(date.getHours()).toEqual(23)
+    expect(date.getMinutes()).toEqual(59)
+    expect(date.getMilliseconds()).toEqual(999)
+  })
+
+  test('endOfWeek', () => {
+    const date = new Date().endOfWeek()
+    expect(date.getDay()).toEqual(0)
+    expect(date.getSeconds()).toEqual(59)
+    expect(date.getHours()).toEqual(23)
+    expect(date.getMinutes()).toEqual(59)
+    expect(date.getMilliseconds()).toEqual(999)
+  })
   describe('beginningOfDay', () => {
     it('should get beginning of day', () => {
       const date = new Date().beginningOfDay()
@@ -91,4 +139,6 @@ describe('Date Helpers', () => {
   test('prevWeek is proper week', () => expect(new Date().prevWeek().toDateTime().hasSame(DateTime.now().minus({ week: 1 }), 'week')).toBeTruthy())
   test('nextWeek is proper week', () => expect(new Date().nextWeek().toDateTime().hasSame(DateTime.now().plus({ week: 1 }), 'week')).toBeTruthy())
   test('change changes year', () => expect(new Date().change({ year: 1994 }).getFullYear()).toEqual(1994))
+  test('monthsAgo', () => expect(new Date().yearsAgo(1).toDateTime().equals(new Date().monthsAgo(12).toDateTime())).toBeTruthy())
+  test('lastYear', () => expect(new Date().lastYear()).toEqual(new Date().ago(Duration.fromObject({ years: 1 }))))
 })
