@@ -1,6 +1,6 @@
 {
   "name": "@activesupport.js/base",
-  "version": "0.1.3",
+  "version": "0.1.5",
   "description": "ActiveSupport Helpers for JS",
   "main": "dist/index.js",
   "repository": {
