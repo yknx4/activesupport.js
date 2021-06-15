@@ -262,6 +262,10 @@ Date.prototype.monthsAgo = function (months) {
   return this.ago(Duration.fromObject({ months }))
 }
 
+Date.prototype.weeksAgo = function (weeks) {
+  return this.ago(Duration.fromObject({ weeks }))
+}
+
 Date.prototype.weeksSince = function (weeks) {
   return this.ago(Duration.fromObject({ weeks }))
 }
