@@ -5,7 +5,9 @@ ActiveSupport Helpers for JS
 ![Release](https://img.shields.io/github/v/release/yknx4/activesupport.js?include_prereleases&sort=semver)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 ![Tests](https://img.shields.io/github/workflow/status/yknx4/activesupport.js/Tests/main)
-![npm](https://img.shields.io/npm/v/@activesupport.js/base)
+![npm-base](https://img.shields.io/npm/v/@activesupport.js/base)
+![npm-case](https://img.shields.io/npm/v/@activesupport.js/case)
+![npm-date](https://img.shields.io/npm/v/@activesupport.js/date)
 
 The goal of this project is to implement as fully as possible all of the [ActiveSupport](https://guides.rubyonrails.org/active_support_core_extensions.html) core extensions with it equivalent JS/Typescript implementation.
 
