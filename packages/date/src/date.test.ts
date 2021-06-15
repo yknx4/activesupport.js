@@ -1,4 +1,4 @@
-import {DateTime} from 'luxon'
+import { DateTime, Duration } from 'luxon'
 import './date'
 
 describe('Date Helpers', () => {
@@ -51,6 +51,22 @@ describe('Date Helpers', () => {
       expect(date.getSeconds()).toEqual(59)
       expect(date.getMinutes()).toEqual(59)
       expect(date.getMilliseconds()).toEqual(999)
+    });
+  })
+
+  describe('fromNow', () => {
+    it('should get 5 hours from beginning of day', () =>  {
+      const date = new Date().beginningOfDay()
+      const newDate = date.fromNow(Duration.fromObject({hours: 5}))
+      expect(newDate.getHours()).toEqual(5)
+    });
+  })
+
+  describe('ago', () => {
+    it('should get 5 hours before midnight', () =>  {
+      const date = new Date().midnight()
+      const newDate = date.ago(Duration.fromObject({hours: 5}))
+      expect(newDate.getHours()).toEqual(19)
     });
   })
   

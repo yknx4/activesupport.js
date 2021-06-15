@@ -3,6 +3,7 @@ import {DateTime, Duration} from 'luxon'
 declare global {
  
   interface Date {
+    toDateTime(): DateTime
     beginningOfDay(): Date
     beginningOfHour(): Date
     midnight(): Date
@@ -18,23 +19,34 @@ declare global {
     change(option: object): Date
   }
 }
+Date.prototype.toDateTime = function() {
+  return DateTime.fromJSDate(this)
+}
 
 Date.prototype.beginningOfDay = function() {
-  return DateTime.fromJSDate(this).set({hour: 0, minute: 0, second: 0, millisecond: 0}).toJSDate()
+  return this.toDateTime().set({hour: 0, minute: 0, second: 0, millisecond: 0}).toJSDate()
 }
 
 Date.prototype.beginningOfHour = function() {
-  return DateTime.fromJSDate(this).set({minute: 0, second: 0, millisecond: 0}).toJSDate()
+  return this.toDateTime().set({minute: 0, second: 0, millisecond: 0}).toJSDate()
 }
 
 Date.prototype.midnight = function() {
-  return DateTime.fromJSDate(this).set({hour: 24, minute: 0, second: 0, millisecond: 0}).toJSDate()
+  return this.toDateTime().set({hour: 24, minute: 0, second: 0, millisecond: 0}).toJSDate()
 }
 
 Date.prototype.endOfDay = function() {
-  return DateTime.fromJSDate(this).set({hour: 23, minute: 59, second: 59, millisecond: 999}).toJSDate()
+  return this.toDateTime().set({hour: 23, minute: 59, second: 59, millisecond: 999}).toJSDate()
 }
 
 Date.prototype.endOfHour = function() {
-  return DateTime.fromJSDate(this).set({minute: 59, second: 59, millisecond: 999}).toJSDate()
+  return this.toDateTime().set({minute: 59, second: 59, millisecond: 999}).toJSDate()
+}
+
+Date.prototype.fromNow = function(input) {
+  return this.toDateTime().plus(input).toJSDate()
+}
+
+Date.prototype.ago = function(input) {
+  return this.toDateTime().minus(input).toJSDate()
 }
