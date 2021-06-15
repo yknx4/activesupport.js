@@ -126,7 +126,14 @@ declare global {
     since(seconds: number): Date
     in(seconds: number): Date
     utc(): Date
+    /**
+     * Returns the number of seconds since 00:00:00.
+     */
     secondsSinceMidnight(): number
+    /**
+     * Returns the number of seconds until 23:59:59.
+     */
+    secondsUntilEndOfDay(): number
     /**
      * The most generic way to jump to other days is advance.
      * @param option 
@@ -274,7 +281,11 @@ Date.prototype.utc = function() {
 }
 
 Date.prototype.secondsSinceMidnight = function() {
-  return this.toDateTime().diff(DateTime.fromJSDate(this.midnight())).get('seconds')
+  return this.toDateTime().diff(DateTime.fromJSDate(this.midnight()), 'seconds').seconds
+}
+
+Date.prototype.secondsUntilEndOfDay = function() {
+  return this.toDateTime().diff(DateTime.fromJSDate(this.endOfDay()), 'seconds').negate().seconds
 }
 
 Date.prototype.change = function(input) {
@@ -305,11 +316,11 @@ Date.prototype.isTomorrow = function() {
 
 Date.prototype.isNextDay = Date.prototype.isTomorrow
 
-Date.prototype.isTomorrow = function() {
+Date.prototype.isYesterday = function() {
   return this.toDateTime().hasSame(Date.yesterday().toDateTime(), 'day')
 }
 
-Date.prototype.isPrevDay = Date.prototype.isTomorrow
+Date.prototype.isPrevDay = Date.prototype.isYesterday
 
 Date.prototype.isFuture = function() {
   return this.toDateTime() > DateTime.now()

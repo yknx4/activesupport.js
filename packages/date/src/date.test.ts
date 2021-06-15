@@ -75,4 +75,12 @@ describe('Date Helpers', () => {
       expect(newDate.getHours()).toEqual(5)
     });
   })
+
+  test('is future', () => expect(Date.tomorrow().isFuture()).toBeTruthy());
+  test('is tomorrow', () => expect(Date.tomorrow().isTomorrow()).toBeTruthy());
+  test('is past', () => expect(Date.yesterday().isPast()).toBeTruthy());
+  test('is yesterday', () => expect(Date.yesterday().isYesterday()).toBeTruthy());
+
+  test('seconds since midnigth', () => expect(DateTime.fromObject({year: new Date().getFullYear(), month: 8, day: 29, hour: 12, minute: 34, second: 56}).toJSDate().secondsSinceMidnight()).toEqual(45296));
+  test('seconds until endofday', () => expect(DateTime.fromObject({year: new Date().getFullYear(), month: 8, day: 29, hour: 12, minute: 34, second: 56}).toJSDate().secondsUntilEndOfDay()).toEqual(41103.999));
 })
