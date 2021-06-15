@@ -34,3 +34,21 @@ jobs:
         working-directory: packages/base
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - run: yarn install
+        working-directory: packages/case
+      - run: yarn build
+        working-directory: packages/case
+      - run: npm publish --access public
+        working-directory: packages/case
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - run: yarn install
+        working-directory: packages/date
+      - run: yarn build
+        working-directory: packages/date
+      - run: npm publish --access public
+        working-directory: packages/date
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}          
