@@ -55,7 +55,7 @@ describe('Date Helpers', () => {
   describe('fromNow', () => {
     it('should get 5 hours from beginning of day', () =>  {
       const date = new Date().beginningOfDay()
-      const newDate = date.fromNow(Duration.fromObject({hours: 5}))
+      const newDate = date.advance(Duration.fromObject({hours: 5}))
       expect(newDate.getHours()).toEqual(5)
     });
   })
@@ -71,7 +71,7 @@ describe('Date Helpers', () => {
   describe('since', () => {
     it('should get 5 seconds since beginning of day', () =>  {
       const date = new Date().beginningOfDay()
-      const newDate = date.fromNow(Duration.fromObject({hours: 5}))
+      const newDate = date.advance(Duration.fromObject({hours: 5}))
       expect(newDate.getHours()).toEqual(5)
     });
   })

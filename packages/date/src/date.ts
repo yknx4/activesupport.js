@@ -1,19 +1,10 @@
-import { DateTime, Duration, DurationInput } from 'luxon'
+import { DateTime, Duration, DurationInput, DateObjectUnits } from 'luxon'
 
 declare global {
 
   interface DateConstructor {
     yesterday(): Date
     tomorrow(): Date
-    isPast(): boolean
-    isToday(): boolean
-    isTomorrow(): boolean
-    isNextDay(): boolean
-    isYesterday(): boolean
-    isPrevDay(): boolean
-    isFuture(): boolean
-    isOnWeekday(): boolean
-    isOnWeekend(): boolean
   }
 
   interface Date {
@@ -125,10 +116,9 @@ declare global {
      */
     weeksSince(weeks: number): Date
     /**
-    * last_week is short-hand for #weeks_ago(1)
+    * lastMonth is short-hand for #monthsAgo(1)
     */
     lastMonth(): Date
-    fromNow(input: Duration): Date
     /**
      * since moves forward. see ago
      * @param seconds 
@@ -146,13 +136,25 @@ declare global {
      * The method change allows you to get a new date which is the same as the receiver except for the given year, month, or day
      * @param option 
      */
-    change(option: DurationInput): Date
+    change(option: DateObjectUnits): Date
+    /**
+    * nextWeek is short-hand for #monthsSince(1)
+    */
     nextWeek(): Date
     /**
      * prev_week is aliased to last_week
      */
     prevWeek(): Date
     lastWeek(): Date
+    isPast(): boolean
+    isToday(): boolean
+    isTomorrow(): boolean
+    isNextDay(): boolean
+    isYesterday(): boolean
+    isPrevDay(): boolean
+    isFuture(): boolean
+    isOnWeekday(): boolean
+    isOnWeekend(): boolean
   }
 }
 
@@ -169,24 +171,63 @@ Date.prototype.toDateTime = function () {
 }
 
 Date.prototype.beginningOfDay = function () {
-  return this.toDateTime().set({ hour: 0, minute: 0, second: 0, millisecond: 0 }).toJSDate()
+  return this.toDateTime().startOf("day").toJSDate()
 }
 
+Date.prototype.beginningOfYear = function () {
+  return this.toDateTime().startOf("year").toJSDate()
+}
+
+Date.prototype.beginningOfMonth = function () {
+  return this.toDateTime().startOf("quarter").toJSDate()
+}
+
+Date.prototype.beginningOfMonth = function () {
+  return this.toDateTime().startOf("month").toJSDate()
+}
+
+Date.prototype.beginningOfWeek = function () {
+  return this.toDateTime().startOf("week").toJSDate()
+}
+
+Date.prototype.beginningOfDay = function () {
+  return this.toDateTime().startOf("day").toJSDate()
+}
+
+
 Date.prototype.beginningOfHour = function () {
-  return this.toDateTime().set({ minute: 0, second: 0, millisecond: 0 }).toJSDate()
+  return this.toDateTime().startOf("hour").toJSDate()
+}
+
+Date.prototype.beginningOfMinute = function () {
+  return this.toDateTime().startOf("minute").toJSDate()
 }
 
 Date.prototype.midnight = Date.prototype.beginningOfDay
 
-Date.prototype.endOfDay = function () {
-  return this.toDateTime().set({ hour: 23, minute: 59, second: 59, millisecond: 999 }).toJSDate()
+Date.prototype.endOfMinute = function () {
+  return this.toDateTime().endOf("minute").toJSDate()
 }
-
 Date.prototype.endOfHour = function () {
-  return this.toDateTime().set({ minute: 59, second: 59, millisecond: 999 }).toJSDate()
+  return this.toDateTime().endOf("hour").toJSDate()
+}
+Date.prototype.endOfDay = function () {
+  return this.toDateTime().endOf("day").toJSDate()
+}
+Date.prototype.endOfWeek = function () {
+  return this.toDateTime().endOf("week").toJSDate()
+}
+Date.prototype.endOfMonth = function () {
+  return this.toDateTime().endOf("month").toJSDate()
+}
+Date.prototype.endOfQuarter = function () {
+  return this.toDateTime().endOf("quarter").toJSDate()
+}
+Date.prototype.endOfYear = function () {
+  return this.toDateTime().endOf("year").toJSDate()
 }
 
-Date.prototype.fromNow = function (input) {
+Date.prototype.advance = function (input) {
   return this.toDateTime().plus(input).toJSDate()
 }
 
@@ -194,10 +235,90 @@ Date.prototype.ago = function (input) {
   return this.toDateTime().minus(input).toJSDate()
 }
 
-Date.prototype.since = function (seconds) {
-  return this.toDateTime().minus({ seconds }).toJSDate()
+Date.prototype.yearsAgo = function (years) {
+  return this.ago(Duration.fromObject({ years }))
 }
 
-Date.prototype.in = function (seconds) {
+Date.prototype.monthsAgo = function (months) {
+  return this.ago(Duration.fromObject({ months }))
+}
+
+Date.prototype.since = function (seconds) {
   return this.toDateTime().plus({ seconds }).toJSDate()
+}
+
+Date.prototype.yearsSince = function (years) {
+  return this.ago(Duration.fromObject({ years }))
+}
+
+Date.prototype.monthsAgo = function (months) {
+  return this.ago(Duration.fromObject({ months }))
+}
+
+Date.prototype.weeksSince = function (weeks) {
+  return this.ago(Duration.fromObject({ weeks }))
+}
+
+Date.prototype.lastYear = function() {
+  return this.yearsAgo(1)
+}
+
+Date.prototype.lastMonth = function() {
+  return this.monthsAgo(1)
+}
+
+Date.prototype.in = Date.prototype.since
+
+Date.prototype.utc = function() {
+  return this.toDateTime().toUTC().toJSDate()
+}
+
+Date.prototype.secondsSinceMidnight = function() {
+  return this.toDateTime().diff(DateTime.fromJSDate(this.midnight())).get('seconds')
+}
+
+Date.prototype.change = function(input) {
+  return this.toDateTime().set(input).toJSDate()
+}
+
+Date.prototype.nextWeek = function() {
+  return this.weeksSince(1)
+}
+
+Date.prototype.prevWeek = function() {
+  return this.weeksAgo(1)
+}
+
+Date.prototype.lastWeek = Date.prototype.prevWeek
+
+Date.prototype.isPast = function() {
+  return this.toDateTime() < DateTime.now()
+}
+
+Date.prototype.isToday = function() {
+  return this.toDateTime().hasSame(DateTime.now(), 'day')
+}
+
+Date.prototype.isTomorrow = function() {
+  return this.toDateTime().hasSame(Date.tomorrow().toDateTime(), 'day')
+}
+
+Date.prototype.isNextDay = Date.prototype.isTomorrow
+
+Date.prototype.isTomorrow = function() {
+  return this.toDateTime().hasSame(Date.yesterday().toDateTime(), 'day')
+}
+
+Date.prototype.isPrevDay = Date.prototype.isTomorrow
+
+Date.prototype.isFuture = function() {
+  return this.toDateTime() > DateTime.now()
+}
+
+Date.prototype.isOnWeekday = function() {
+  return this.toDateTime().weekday < 6
+}
+
+Date.prototype.isOnWeekend = function() {
+  return !this.isOnWeekday()
 }
