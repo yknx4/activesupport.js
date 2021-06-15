@@ -37,3 +37,15 @@ jobs:
       - name: Test (Base)
         run: yarn test --coverage
         working-directory: packages/base
+      - name: Install NPM Packages (Case)
+        run: yarn install
+        working-directory: packages/case
+      - name: Test (Case)
+        run: yarn test --coverage
+        working-directory: packages/case
+      - name: Install NPM Packages (Date)
+        run: yarn install
+        working-directory: packages/date
+      - name: Test (Date)
+        run: yarn test --coverage
+        working-directory: packages/date
