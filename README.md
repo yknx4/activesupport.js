@@ -7,6 +7,12 @@ ActiveSupport Helpers for JS
 ![Tests](https://img.shields.io/github/workflow/status/yknx4/activesupport.js/Tests/main)
 ![npm](https://img.shields.io/npm/v/@activesupport.js/base)
 
+The goal of this project is to implement as fully as possible all of the [ActiveSupport](https://guides.rubyonrails.org/active_support_core_extensions.html) core extensions with it equivalent JS/Typescript implementation.
+
+If you are afraid of prototype augmentation, then leave and don't look back.
+
+This library will inject base JS prototypes with several helper methods, since most of the drawbacks of prototype pollution are addressed by Typescript and the ability to properly document this changes this should be harmless.
+
 ## Documentation
 
 For more detailed documentation, the changelog, and TypeDoc documentation rendered with TypeDoc, see https://typedoc.org.
