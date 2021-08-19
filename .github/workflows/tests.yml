@@ -52,3 +52,8 @@ jobs:
       - name: Test (Date)
         run: yarn test --coverage
         working-directory: packages/date
+      - uses: codecov/codecov-action@v2
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
+          files: packages/base/coverage/coverage-final.json,packages/case/coverage/coverage-final.json,packages/date/coverage/coverage-final.json
+          fail_ci_if_error: true
