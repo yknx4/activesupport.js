@@ -25,7 +25,7 @@ describe('Date Helpers', () => {
 
   test('endOfMonth', () => {
     const date = new Date().endOfMonth()
-    expect(date.getDate()).toEqual(30)
+    expect(date.getDate()).toBeGreaterThanOrEqual(28)
     expect(date.getSeconds()).toEqual(59)
     expect(date.getHours()).toEqual(23)
     expect(date.getMinutes()).toEqual(59)
