@@ -1,4 +1,5 @@
 {
+  "exclude": ["node_modules", "bower_components", "jspm_packages", "src/**/*.test.ts"],
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
 
