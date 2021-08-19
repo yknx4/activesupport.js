@@ -8,6 +8,9 @@ ActiveSupport Helpers for JS
 ![npm-base](https://img.shields.io/npm/v/@activesupport.js/base)
 ![npm-case](https://img.shields.io/npm/v/@activesupport.js/case)
 ![npm-date](https://img.shields.io/npm/v/@activesupport.js/date)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/180f0a809c7c4656b0b57df751f8ed65)](https://www.codacy.com/gh/yknx4/activesupport.js/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=yknx4/activesupport.js&amp;utm_campaign=Badge_Grade)
+[![codecov](https://codecov.io/gh/yknx4/activesupport.js/branch/master/graph/badge.svg?token=ywpfgzvfyQ)](https://codecov.io/gh/yknx4/activesupport.js)
+[![CodeFactor](https://www.codefactor.io/repository/github/yknx4/activesupport.js/badge)](https://www.codefactor.io/repository/github/yknx4/activesupport.js)
 
 The goal of this project is to implement as fully as possible all of the [ActiveSupport](https://guides.rubyonrails.org/active_support_core_extensions.html) core extensions with it equivalent JS/Typescript implementation.
 
