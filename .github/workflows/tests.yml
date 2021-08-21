@@ -55,6 +55,7 @@ jobs:
       - name: Coveralls
         uses: coverallsapp/github-action@master
         with:
+          git-branch: ${{env.GITHUB_HEAD_REF}}
           github-token: ${{ secrets.LIBRECOV_TOKEN }}
           coveralls-endpoint: ${{ secrets.LIBRECOV_ENDPOINT }}
           parallel-finished: true
@@ -92,6 +93,7 @@ jobs:
       - name: Coveralls
         uses: coverallsapp/github-action@master
         with:
+          git-branch: ${{env.GITHUB_HEAD_REF}}
           github-token: ${{ secrets.LIBRECOV_TOKEN }}
           coveralls-endpoint: ${{ secrets.LIBRECOV_ENDPOINT }}
           flag-name: base-cov
@@ -132,6 +134,7 @@ jobs:
       - name: Coveralls
         uses: coverallsapp/github-action@master
         with:
+          git-branch: ${{env.GITHUB_HEAD_REF}}
           github-token: ${{ secrets.LIBRECOV_TOKEN }}
           coveralls-endpoint: ${{ secrets.LIBRECOV_ENDPOINT }}
           flag-name: case-cov
@@ -172,6 +175,7 @@ jobs:
       - name: Coveralls
         uses: coverallsapp/github-action@master
         with:
+          git-branch: ${{env.GITHUB_HEAD_REF}}
           github-token: ${{ secrets.LIBRECOV_TOKEN }}
           coveralls-endpoint: ${{ secrets.LIBRECOV_ENDPOINT }}
           flag-name: date-cov
