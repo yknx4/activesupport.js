@@ -7,14 +7,14 @@ on:
   pull_request:
 
 jobs:
-  build:
+  dependencies:
     runs-on: ubuntu-latest
     env:
       CI: true
     strategy:
       matrix:
-        node: [ '12', '14', '16' ]
-    name: Node ${{ matrix.node }} tests
+        node: ["12", "14", "16"]
+    name: Node ${{ matrix.node }} Dependencies
     steps:
       - uses: szenius/set-timezone@v1.0
         with:
@@ -24,36 +24,133 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node }}
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-      - uses: actions/cache@v2
-        id: yarn-cache
-        with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
+      - uses: c-hive/gha-yarn-cache@v2
       - name: Install NPM Packages (Base)
         run: yarn install
-        working-directory: packages/base
-      - name: Test (Base)
-        run: yarn test --coverage
         working-directory: packages/base
       - name: Install NPM Packages (Case)
         run: yarn install
         working-directory: packages/case
-      - name: Test (Case)
-        run: yarn test --coverage
-        working-directory: packages/case
       - name: Install NPM Packages (Date)
         run: yarn install
         working-directory: packages/date
-      - name: Test (Date)
+
+  test-base:
+    needs: ["dependencies"]
+    runs-on: ubuntu-latest
+    env:
+      CI: true
+    strategy:
+      matrix:
+        node: ["12", "14", "16"]
+    name: Node ${{ matrix.node }} base tests
+    steps:
+      - uses: szenius/set-timezone@v1.0
+        with:
+          timezoneLinux: "America/Mexico_City"
+      - uses: actions/checkout@v2
+      - name: Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node }}
+      - uses: c-hive/gha-yarn-cache@v2
+      - name: Install NPM Packages
+        run: yarn install
+        working-directory: packages/base
+      - name: Test
+        run: yarn test --coverage
+        working-directory: packages/base
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v2
+        with:
+          name: base-cov
+          path: packages/base/coverage
+      - name: Coveralls
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.LIBRECOV_TOKEN }}
+          coveralls-endpoint: ${{ secrets.LIBRECOV_ENDPOINT }}
+          flag-name: base-cov
+          parallel: true
+          path-to-lcov: packages/base/coverage/lcov.info
+          base-path: "${{env.GITHUB_WORKSPACE}}/packages/base"
+
+  test-case:
+    needs: ["dependencies"]
+    runs-on: ubuntu-latest
+    env:
+      CI: true
+    strategy:
+      matrix:
+        node: ["12", "14", "16"]
+    name: Node ${{ matrix.node }} case tests
+    steps:
+      - uses: szenius/set-timezone@v1.0
+        with:
+          timezoneLinux: "America/Mexico_City"
+      - uses: actions/checkout@v2
+      - name: Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node }}
+      - uses: c-hive/gha-yarn-cache@v2
+      - name: Install NPM Packages
+        run: yarn install
+        working-directory: packages/case
+      - name: Test
+        run: yarn test --coverage
+        working-directory: packages/case
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v2
+        with:
+          name: case-cov
+          path: packages/case/coverage
+      - name: Coveralls
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.LIBRECOV_TOKEN }}
+          coveralls-endpoint: ${{ secrets.LIBRECOV_ENDPOINT }}
+          flag-name: case-cov
+          parallel: true
+          path-to-lcov: packages/case/coverage/lcov.info
+          base-path: "${{env.GITHUB_WORKSPACE}}/packages/case"
+
+  test-date:
+    needs: ["dependencies"]
+    runs-on: ubuntu-latest
+    env:
+      CI: true
+    strategy:
+      matrix:
+        node: ["12", "14", "16"]
+    name: Node ${{ matrix.node }} date tests
+    steps:
+      - uses: szenius/set-timezone@v1.0
+        with:
+          timezoneLinux: "America/Mexico_City"
+      - uses: actions/checkout@v2
+      - name: Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node }}
+      - uses: c-hive/gha-yarn-cache@v2
+      - name: Install NPM Packages
+        run: yarn install
+        working-directory: packages/date
+      - name: Test
         run: yarn test --coverage
         working-directory: packages/date
-      - uses: codecov/codecov-action@v2
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v2
         with:
-          token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
-          files: packages/base/coverage/coverage-final.json,packages/case/coverage/coverage-final.json,packages/date/coverage/coverage-final.json
-          fail_ci_if_error: true
+          name: date-cov
+          path: packages/date/coverage
+      - name: Coveralls
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.LIBRECOV_TOKEN }}
+          coveralls-endpoint: ${{ secrets.LIBRECOV_ENDPOINT }}
+          flag-name: date-cov
+          parallel: true
+          path-to-lcov: packages/date/coverage/lcov.info
+          date-path: "${{env.GITHUB_WORKSPACE}}/packages/date"
