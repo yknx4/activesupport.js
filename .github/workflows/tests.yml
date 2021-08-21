@@ -57,7 +57,7 @@ jobs:
         with:
           git-branch: ${{env.GITHUB_HEAD_REF}}
           github-token: ${{ secrets.LIBRECOV_TOKEN }}
-          coveralls-endpoint: https://enbbj4k321uh4.x.pipedream.net/
+          coveralls-endpoint: ${{ secrets.LIBRECOV_ENDPOINT }}
           parallel-finished: true
 
   test-base:
