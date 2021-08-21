@@ -57,16 +57,19 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           name: codecov-umbrella
-          path_to_write_report: ./coverage/codecov_report.txt
           verbose: true
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v2
+      - name: Setup node
+        uses: actions/setup-node@v2
         with:
-          token: ${{ secrets.LIBRECOV_TOKEN }}
-          url: ${{ secrets.LIBRECOV_ENDPOINT }}
-          name: codecov-umbrella
-          path_to_write_report: ./coverage/codecov_report.txt
-          verbose: true
+          node-version: ${{ matrix.node }}
+      - uses: c-hive/gha-yarn-cache@v2
+      - name: Codecov Node
+        env:
+          CODECOV_URL: ${{ secrets.LIBRECOV_ENDPOINT }}
+          CODECOV_TOKEN: ${{ secrets.LIBRECOV_TOKEN }}
+        run: |
+          yarn add codecov
+          npx codecov --disable=s3
       - name: Coveralls
         uses: coverallsapp/github-action@master
         with:
