@@ -174,4 +174,4 @@ jobs:
           flag-name: date-cov
           parallel: true
           path-to-lcov: packages/date/coverage/lcov.info
-          date-path: "${{env.GITHUB_WORKSPACE}}/packages/date"
+          base-path: "${{env.GITHUB_WORKSPACE}}/packages/date"
