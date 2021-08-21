@@ -52,13 +52,6 @@ jobs:
       - uses: actions/download-artifact@v2
       - name: Display structure of downloaded files
         run: ls -R
-      - name: Coveralls
-        uses: coverallsapp/github-action@master
-        with:
-          git-branch: ${{env.GITHUB_HEAD_REF}}
-          github-token: ${{ secrets.LIBRECOV_TOKEN }}
-          coveralls-endpoint: ${{ secrets.LIBRECOV_ENDPOINT }}
-          parallel-finished: true
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v2
         with:
@@ -66,6 +59,22 @@ jobs:
           name: codecov-umbrella
           path_to_write_report: ./coverage/codecov_report.txt
           verbose: true
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v2
+        with:
+          token: ${{ secrets.LIBRECOV_TOKEN }}
+          url: ${{ secrets.LIBRECOV_ENDPOINT }}
+          name: codecov-umbrella
+          path_to_write_report: ./coverage/codecov_report.txt
+          verbose: true
+      - name: Coveralls
+        uses: coverallsapp/github-action@master
+        with:
+          git-branch: ${{env.GITHUB_HEAD_REF}}
+          github-token: ${{ secrets.LIBRECOV_TOKEN }}
+          coveralls-endpoint: ${{ secrets.LIBRECOV_ENDPOINT }}
+          parallel-finished: true
+
 
   test-base:
     needs: ["dependencies"]
