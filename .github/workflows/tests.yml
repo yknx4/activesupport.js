@@ -73,7 +73,6 @@ jobs:
       - name: Coveralls
         uses: coverallsapp/github-action@master
         with:
-          git-branch: ${{env.GITHUB_HEAD_REF}}
           github-token: ${{ secrets.LIBRECOV_TOKEN }}
           coveralls-endpoint: ${{ secrets.LIBRECOV_ENDPOINT }}
           parallel-finished: true
