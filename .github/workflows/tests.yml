@@ -59,6 +59,13 @@ jobs:
           github-token: ${{ secrets.LIBRECOV_TOKEN }}
           coveralls-endpoint: ${{ secrets.LIBRECOV_ENDPOINT }}
           parallel-finished: true
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v2
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          name: codecov-umbrella
+          path_to_write_report: ./coverage/codecov_report.txt
+          verbose: true
 
   test-base:
     needs: ["dependencies"]
