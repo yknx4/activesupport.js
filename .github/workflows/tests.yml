@@ -55,6 +55,9 @@ jobs:
           github-token: ${{ secrets.LIBRECOV_TOKEN }}
           coveralls-endpoint: ${{ secrets.LIBRECOV_ENDPOINT }}
           parallel-finished: true
+      - uses: actions/download-artifact@v2
+      - name: Display structure of downloaded files
+        run: ls -R
 
   test-base:
     needs: ["dependencies"]
