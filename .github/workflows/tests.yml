@@ -78,7 +78,6 @@ jobs:
           coveralls-endpoint: ${{ secrets.LIBRECOV_ENDPOINT }}
           parallel-finished: true
 
-
   test-base:
     needs: ["dependencies"]
     runs-on: ubuntu-latest
@@ -89,6 +88,11 @@ jobs:
         node: ["12", "14", "16"]
     name: Node ${{ matrix.node }} base tests
     steps:
+      - name: Generate build number
+        uses: einaregilsson/build-number@v3
+        if: ${{ matrix.node == "16" }}
+        with:
+          token: ${{secrets.github_token}}
       - uses: szenius/set-timezone@v1.0
         with:
           timezoneLinux: "America/Mexico_City"
@@ -106,11 +110,15 @@ jobs:
         working-directory: packages/base
       - name: Archive code coverage results
         uses: actions/upload-artifact@v2
+        if: ${{ matrix.node == "16" }}
         with:
           name: base-cov
           path: packages/base/coverage
       - name: Coveralls
         uses: coverallsapp/github-action@master
+        env:
+          COVERALLS_SERVICE_NUMBER: ${{ env.BUILD_NUMBER }}
+        if: ${{ matrix.node == "16" }}
         with:
           git-branch: ${{env.GITHUB_HEAD_REF}}
           github-token: ${{ secrets.LIBRECOV_TOKEN }}
@@ -130,6 +138,11 @@ jobs:
         node: ["12", "14", "16"]
     name: Node ${{ matrix.node }} case tests
     steps:
+      - name: Generate build number
+        uses: einaregilsson/build-number@v3
+        if: ${{ matrix.node == "16" }}
+        with:
+          token: ${{secrets.github_token}}
       - uses: szenius/set-timezone@v1.0
         with:
           timezoneLinux: "America/Mexico_City"
@@ -147,11 +160,15 @@ jobs:
         working-directory: packages/case
       - name: Archive code coverage results
         uses: actions/upload-artifact@v2
+        if: ${{ matrix.node == "16" }}
         with:
           name: case-cov
           path: packages/case/coverage
       - name: Coveralls
         uses: coverallsapp/github-action@master
+        if: ${{ matrix.node == "16" }}
+        env:
+          COVERALLS_SERVICE_NUMBER: ${{ env.BUILD_NUMBER }}
         with:
           git-branch: ${{env.GITHUB_HEAD_REF}}
           github-token: ${{ secrets.LIBRECOV_TOKEN }}
@@ -171,6 +188,11 @@ jobs:
         node: ["12", "14", "16"]
     name: Node ${{ matrix.node }} date tests
     steps:
+      - name: Generate build number
+        uses: einaregilsson/build-number@v3
+        if: ${{ matrix.node == "16" }}
+        with:
+          token: ${{secrets.github_token}}
       - uses: szenius/set-timezone@v1.0
         with:
           timezoneLinux: "America/Mexico_City"
@@ -188,11 +210,15 @@ jobs:
         working-directory: packages/date
       - name: Archive code coverage results
         uses: actions/upload-artifact@v2
+        if: ${{ matrix.node == "16" }}
         with:
           name: date-cov
           path: packages/date/coverage
       - name: Coveralls
         uses: coverallsapp/github-action@master
+        if: ${{ matrix.node == "16" }}
+        env:
+          COVERALLS_SERVICE_NUMBER: ${{ env.BUILD_NUMBER }}
         with:
           git-branch: ${{env.GITHUB_HEAD_REF}}
           github-token: ${{ secrets.LIBRECOV_TOKEN }}
