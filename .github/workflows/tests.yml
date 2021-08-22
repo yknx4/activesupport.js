@@ -45,6 +45,9 @@ jobs:
         node: ["16"]
     name: Node ${{ matrix.node }} Reports
     steps:
+      - name: Get branch name
+        id: branch-name
+        uses: tj-actions/branch-names@v4.8
       - uses: szenius/set-timezone@v1.0
         with:
           timezoneLinux: "America/Mexico_City"
@@ -69,11 +72,12 @@ jobs:
           CODECOV_TOKEN: ${{ secrets.LIBRECOV_TOKEN }}
         run: |
           yarn add codecov
-          npx codecov --disable=s3
+          npx codecov --disable=s3 --build "${GITHUB_RUN_ID}${GITHUB_RUN_NUMBER}"
       - name: Coveralls
         uses: coverallsapp/github-action@master
         continue-on-error: true
         with:
+          git-branch: ${{steps.branch-name.outputs.current_branch}}
           github-token: ${{ secrets.LIBRECOV_TOKEN }}
           coveralls-endpoint: ${{ secrets.LIBRECOV_ENDPOINT }}
           parallel-finished: true
@@ -88,6 +92,9 @@ jobs:
         node: ["12", "14", "16"]
     name: Node ${{ matrix.node }} base tests
     steps:
+      - name: Get branch name
+        id: branch-name
+        uses: tj-actions/branch-names@v4.8
       - uses: szenius/set-timezone@v1.0
         with:
           timezoneLinux: "America/Mexico_City"
@@ -113,7 +120,7 @@ jobs:
         uses: coverallsapp/github-action@master
         if: ${{ matrix.node == '16' }}
         with:
-          git-branch: ${{env.GITHUB_HEAD_REF}}
+          git-branch: ${{steps.branch-name.outputs.current_branch}}
           github-token: ${{ secrets.LIBRECOV_TOKEN }}
           coveralls-endpoint: ${{ secrets.LIBRECOV_ENDPOINT }}
           flag-name: base-cov
@@ -131,6 +138,9 @@ jobs:
         node: ["12", "14", "16"]
     name: Node ${{ matrix.node }} case tests
     steps:
+      - name: Get branch name
+        id: branch-name
+        uses: tj-actions/branch-names@v4.8
       - uses: szenius/set-timezone@v1.0
         with:
           timezoneLinux: "America/Mexico_City"
@@ -156,7 +166,7 @@ jobs:
         uses: coverallsapp/github-action@master
         if: ${{ matrix.node == '16' }}
         with:
-          git-branch: ${{env.GITHUB_HEAD_REF}}
+          git-branch: ${{steps.branch-name.outputs.current_branch}}
           github-token: ${{ secrets.LIBRECOV_TOKEN }}
           coveralls-endpoint: ${{ secrets.LIBRECOV_ENDPOINT }}
           flag-name: case-cov
@@ -174,6 +184,9 @@ jobs:
         node: ["12", "14", "16"]
     name: Node ${{ matrix.node }} date tests
     steps:
+      - name: Get branch name
+        id: branch-name
+        uses: tj-actions/branch-names@v4.8
       - uses: szenius/set-timezone@v1.0
         with:
           timezoneLinux: "America/Mexico_City"
@@ -199,7 +212,7 @@ jobs:
         uses: coverallsapp/github-action@master
         if: ${{ matrix.node == '16' }}
         with:
-          git-branch: ${{env.GITHUB_HEAD_REF}}
+          git-branch: ${{steps.branch-name.outputs.current_branch}}
           github-token: ${{ secrets.LIBRECOV_TOKEN }}
           coveralls-endpoint: ${{ secrets.LIBRECOV_ENDPOINT }}
           flag-name: date-cov
