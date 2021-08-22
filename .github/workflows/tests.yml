@@ -78,10 +78,10 @@ jobs:
         env:
           CODECOV_URL: ${{ secrets.LIBRECOV_ENDPOINT }}
           CODECOV_TOKEN: ${{ secrets.LIBRECOV_TOKEN }}
-          NUMBER: "1${{ env.GITHUB_RUN_ID }}"
+          GITHUB_RUN_ID: "1${{ github.run_id }}"
         run: |
           yarn add codecov
-          npx codecov --disable=s3 --build "$NUMBER"
+          npx codecov --disable=s3
 
   test-base:
     needs: ["dependencies"]
