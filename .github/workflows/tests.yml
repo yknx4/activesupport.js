@@ -66,13 +66,6 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
       - uses: c-hive/gha-yarn-cache@v2
-      - name: Codecov Node
-        env:
-          CODECOV_URL: ${{ secrets.LIBRECOV_ENDPOINT }}
-          CODECOV_TOKEN: ${{ secrets.LIBRECOV_TOKEN }}
-        run: |
-          yarn add codecov
-          npx codecov --disable=s3 --build "${GITHUB_RUN_ID}${GITHUB_RUN_NUMBER}"
       - name: Coveralls
         uses: coverallsapp/github-action@master
         continue-on-error: true
@@ -81,6 +74,13 @@ jobs:
           github-token: ${{ secrets.LIBRECOV_TOKEN }}
           coveralls-endpoint: ${{ secrets.LIBRECOV_ENDPOINT }}
           parallel-finished: true
+      - name: Codecov Node
+        env:
+          CODECOV_URL: ${{ secrets.LIBRECOV_ENDPOINT }}
+          CODECOV_TOKEN: ${{ secrets.LIBRECOV_TOKEN }}
+        run: |
+          yarn add codecov
+          npx codecov --disable=s3 --build "$GITHUB_RUN_ID$GITHUB_RUN_NUMBER"
 
   test-base:
     needs: ["dependencies"]
