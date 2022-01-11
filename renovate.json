@@ -2,5 +2,25 @@
   "extends": [
     "config:base"
   ],
-  "commitMessagePrefix": "build(deps):"
+  "commitMessagePrefix": "build(deps):",
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["patch", "pin", "digest"],
+      "automerge": true,
+      "automergeType": "branch",
+    },
+    {
+      "matchUpdateTypes": ["minor"],
+      "platformAutomerge": true,
+      "ignoreTests": false,
+      "automerge": true,
+      "automergeType": "pr",
+    },
+    {
+      "matchUpdateTypes": ["major"],
+      "ignoreTests": false,
+      "automerge": false,
+      "automergeType": "pr",
+    },
+  ]
 }
