@@ -22,5 +22,18 @@
       "automerge": false,
       "automergeType": "pr",
     },
-  ]
+  ],
+   "reviewers": ["yknx4"],
+  "bumpVersion": "minor",
+  "commitMessagePrefix": "build(deps):",
+  "dependencyDashboard": true,
+  "lockFileMaintenance": {
+    "enabled": true
+  },
+  "stabilityDays": 7,
+  "vulnerabilityAlerts": {
+    "labels": ["fix"],
+    "assignees": ["@yknx4"]
+  },
+  "rangeStrategy": "replace"
 }
