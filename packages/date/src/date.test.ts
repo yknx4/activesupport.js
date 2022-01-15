@@ -2,7 +2,7 @@ import { DateTime, Duration } from 'luxon'
 import './date'
 
 describe('Date Helpers', () => {
-  test('utc', () => expect(DateTime.fromObject({ year: new Date().getFullYear(), month: 8, day: 29, hour: 12, minute: 34, second: 56 }).toJSDate().utc().toISOString()).toEqual('2021-08-29T17:34:56.000Z'))
+  test('utc', () => expect(DateTime.fromObject({ year: new Date().getFullYear(), month: 8, day: 29, hour: 12, minute: 34, second: 56 }).toJSDate().utc().toISOString()).toEqual('2022-08-29T17:34:56.000Z'))
   test('beginningOfYear', () => {
     const date = new Date().beginningOfYear()
     expect(date.getMonth()).toEqual(0)
