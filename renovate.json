@@ -1,52 +1,16 @@
 {
   "extends": [
-    "config:base"
+    "config:base",
+    "group:test",
+    "packages:linters",
+    ":preserveSemverRanges",
+    ":automergeMinor",
+    ":dependencyDashboard",
+    ":semanticCommitType(build)",
+    ":semanticCommitScope(deps)",
+    ":prImmediately",
+    ":disableRateLimiting",
+    ":semanticCommits"
   ],
-  "packageRules": [
-    {
-      "matchUpdateTypes": [
-        "patch",
-        "pin",
-        "digest"
-      ],
-      "automerge": true,
-      "automergeType": "branch",
-    },
-    {
-      "matchUpdateTypes": [
-        "minor"
-      ],
-      "platformAutomerge": true,
-      "ignoreTests": false,
-      "automerge": true,
-      "automergeType": "pr",
-    },
-    {
-      "matchUpdateTypes": [
-        "major"
-      ],
-      "ignoreTests": false,
-      "automerge": false,
-      "automergeType": "pr",
-    },
-  ],
-  "reviewers": [
-    "yknx4"
-  ],
-  "bumpVersion": "minor",
-  "commitMessagePrefix": "build(deps):",
-  "dependencyDashboard": true,
-  "lockFileMaintenance": {
-    "enabled": true
-  },
-  "stabilityDays": 7,
-  "vulnerabilityAlerts": {
-    "labels": [
-      "fix"
-    ],
-    "assignees": [
-      "@yknx4"
-    ]
-  },
-  "rangeStrategy": "replace"
+  "includeForks": true
 }
