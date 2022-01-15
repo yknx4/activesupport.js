@@ -2,6 +2,8 @@
   "extends": [
     "config:base",
     "group:test",
+    "group:linters",
+    "group:typescript-eslintMonorepo",
     "packages:linters",
     ":preserveSemverRanges",
     ":automergeMinor",
