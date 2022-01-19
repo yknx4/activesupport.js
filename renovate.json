@@ -14,5 +14,6 @@
     ":disableRateLimiting",
     ":semanticCommits"
   ],
-  "includeForks": true
+  "includeForks": true,
+  "platformAutomerge": true
 }
