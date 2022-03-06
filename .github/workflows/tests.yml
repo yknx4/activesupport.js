@@ -19,7 +19,7 @@ jobs:
       - uses: szenius/set-timezone@v1.0
         with:
           timezoneLinux: "America/Mexico_City"
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Setup node
         uses: actions/setup-node@v2
         with:
@@ -51,7 +51,7 @@ jobs:
       - uses: szenius/set-timezone@v1.0
         with:
           timezoneLinux: "America/Mexico_City"
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: actions/download-artifact@v2
       - name: Display structure of downloaded files
         run: ls -R
@@ -99,7 +99,7 @@ jobs:
       - uses: szenius/set-timezone@v1.0
         with:
           timezoneLinux: "America/Mexico_City"
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Setup node
         uses: actions/setup-node@v2
         with:
@@ -145,7 +145,7 @@ jobs:
       - uses: szenius/set-timezone@v1.0
         with:
           timezoneLinux: "America/Mexico_City"
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Setup node
         uses: actions/setup-node@v2
         with:
@@ -191,7 +191,7 @@ jobs:
       - uses: szenius/set-timezone@v1.0
         with:
           timezoneLinux: "America/Mexico_City"
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Setup node
         uses: actions/setup-node@v2
         with:
