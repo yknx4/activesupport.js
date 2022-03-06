@@ -21,7 +21,7 @@ jobs:
           timezoneLinux: "America/Mexico_City"
       - uses: actions/checkout@v2
       - name: Setup node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
       - uses: c-hive/gha-yarn-cache@v2
@@ -62,7 +62,7 @@ jobs:
           name: codecov-umbrella
           verbose: true
       - name: Setup node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
       - uses: c-hive/gha-yarn-cache@v2
@@ -101,7 +101,7 @@ jobs:
           timezoneLinux: "America/Mexico_City"
       - uses: actions/checkout@v2
       - name: Setup node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
       - uses: c-hive/gha-yarn-cache@v2
@@ -147,7 +147,7 @@ jobs:
           timezoneLinux: "America/Mexico_City"
       - uses: actions/checkout@v2
       - name: Setup node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
       - uses: c-hive/gha-yarn-cache@v2
@@ -193,7 +193,7 @@ jobs:
           timezoneLinux: "America/Mexico_City"
       - uses: actions/checkout@v2
       - name: Setup node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
       - uses: c-hive/gha-yarn-cache@v2
