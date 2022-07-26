@@ -38,6 +38,6 @@
   "dependencies": {
     "case": "^1.6.3",
     "pluralize": "^8.0.0",
-    "transliteration": "^2.2.0"
+    "transliteration": "^2.3.3"
   }
 }
