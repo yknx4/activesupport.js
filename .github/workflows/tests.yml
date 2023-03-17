@@ -112,7 +112,7 @@ jobs:
         run: yarn test --coverage
         working-directory: packages/base
       - name: Archive code coverage results
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         if: ${{ matrix.node == '16' }}
         with:
           name: base-cov
@@ -158,7 +158,7 @@ jobs:
         run: yarn test --coverage
         working-directory: packages/case
       - name: Archive code coverage results
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         if: ${{ matrix.node == '16' }}
         with:
           name: case-cov
@@ -204,7 +204,7 @@ jobs:
         run: yarn test --coverage
         working-directory: packages/date
       - name: Archive code coverage results
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         if: ${{ matrix.node == '16' }}
         with:
           name: date-cov
