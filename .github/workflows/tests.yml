@@ -52,7 +52,7 @@ jobs:
         with:
           timezoneLinux: "America/Mexico_City"
       - uses: actions/checkout@v2
-      - uses: actions/download-artifact@v2
+      - uses: actions/download-artifact@v3
       - name: Display structure of downloaded files
         run: ls -R
       - name: Upload coverage to Codecov
