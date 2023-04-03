@@ -47,7 +47,7 @@ jobs:
     steps:
       - name: Get branch name
         id: branch-name
-        uses: tj-actions/branch-names@v5.1
+        uses: tj-actions/branch-names@v6.5
       - uses: szenius/set-timezone@v1.0
         with:
           timezoneLinux: "America/Mexico_City"
@@ -95,7 +95,7 @@ jobs:
     steps:
       - name: Get branch name
         id: branch-name
-        uses: tj-actions/branch-names@v5.1
+        uses: tj-actions/branch-names@v6.5
       - uses: szenius/set-timezone@v1.0
         with:
           timezoneLinux: "America/Mexico_City"
@@ -141,7 +141,7 @@ jobs:
     steps:
       - name: Get branch name
         id: branch-name
-        uses: tj-actions/branch-names@v5.1
+        uses: tj-actions/branch-names@v6.5
       - uses: szenius/set-timezone@v1.0
         with:
           timezoneLinux: "America/Mexico_City"
@@ -187,7 +187,7 @@ jobs:
     steps:
       - name: Get branch name
         id: branch-name
-        uses: tj-actions/branch-names@v5.1
+        uses: tj-actions/branch-names@v6.5
       - uses: szenius/set-timezone@v1.0
         with:
           timezoneLinux: "America/Mexico_City"
